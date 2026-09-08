@@ -1,0 +1,6 @@
+{
+  "name": "Sandra Machoń - Terapia CBT Online",
+  "description": "Strona internetowa gabinetu terapii poznawczo-behawioralnej online Sandry Machoń - psycholożki i terapeutki CBT.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

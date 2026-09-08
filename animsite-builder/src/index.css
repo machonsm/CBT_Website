@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Clean Utility Styles */
+
+/* Floaty Animation for Przewiń w dół */
+@keyframes floaty {
+  0%, 100% {
+    transform: translateY(-4px);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+.animate-floaty {
+  animation: floaty 2.2s ease-in-out infinite;
+}
+
