@@ -1,0 +1,56 @@
+/* A final illustrated scene, using the landing page's paper and colours. */
+.site-footer.illustrated-footer {
+  position: relative;
+  padding: clamp(3rem, 5vw, 5rem) 0 0;
+  border: 0;
+  border-radius: 2rem 2rem 0 0;
+  background: var(--palette-paper);
+  color: var(--palette-deep);
+}
+
+.illustrated-footer .footer-brand-row,
+.illustrated-footer .footer-col h4,
+.illustrated-footer .footer-col .email-link { color: var(--palette-deep); }
+
+.illustrated-footer .footer-brand-row img { padding: 0; background: transparent; }
+
+.illustrated-footer .footer-brand p,
+.illustrated-footer .footer-col p,
+.illustrated-footer .footer-col a,
+.illustrated-footer .footer-bottom { color: var(--palette-deep); }
+
+.illustrated-footer .footer-col a:hover { color: var(--palette-deep); }
+.illustrated-footer .footer-bottom { border-top-color: var(--palette-rule); }
+
+.illustrated-footer .lang-toggle {
+  border-color: var(--palette-rule);
+  background: transparent;
+  color: var(--palette-deep);
+}
+
+.illustrated-footer .lang-toggle:hover { border-color: var(--palette-deep); background: var(--palette-pink); }
+
+.footer-garden {
+  position: relative;
+  /* Match the padded SVG so wide screens keep the full flowers in view. */
+  aspect-ratio: 1520 / 430;
+  margin-top: clamp(2.5rem, 5vw, 5rem);
+  overflow: clip;
+  touch-action: pan-y pinch-zoom;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.footer-garden-art { display: block; width: 100%; height: 100%; overflow: visible; }
+
+@media (max-width: 650px) {
+  .site-footer.illustrated-footer { border-radius: 1.5rem 1.5rem 0 0; }
+  .illustrated-footer .footer-grid { gap: 1.75rem; }
+  .footer-garden { aspect-ratio: auto; height: min(56vw, 16rem); margin-top: 2rem; }
+  .footer-stem-edge { display: none; }
+  .footer-stem-brain { transform: translateX(530px); }
+  .footer-stem-heart { transform: translateX(720px); }
+  .footer-stem-flower { transform: translateX(910px); }
+}
+
+.illustrated-footer .lang-toggle :is(.is-current, .is-muted) { color: var(--palette-deep); }

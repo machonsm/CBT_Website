@@ -1,0 +1,158 @@
+.booking-flow {
+  color: var(--palette-deep);
+}
+
+.booking-flow [hidden] {
+  display: none !important;
+}
+
+.booking-flow .modal-head .booking-flow-step {
+  margin: 0 0 .75rem;
+  color: var(--palette-deep);
+  font-size: .72rem;
+  font-weight: 650;
+  letter-spacing: .05em;
+}
+
+.booking-flow-price {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: var(--palette-pink);
+}
+
+.booking-flow-price > strong {
+  flex-shrink: 0;
+  font-size: 1.2rem;
+}
+
+.booking-flow-price span {
+  display: block;
+  margin-top: .3rem;
+  font-size: .78rem;
+}
+
+.booking-flow-note {
+  margin: 0;
+  color: var(--palette-deep);
+  font-size: .8rem;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+.booking-flow-note a {
+  color: var(--palette-deep);
+  text-decoration: underline;
+  text-underline-offset: .18em;
+}
+
+.booking-flow .field,
+.booking-flow .form-grid {
+  min-width: 0;
+}
+
+.booking-flow .field input,
+.booking-flow .field select {
+  min-width: 0;
+}
+
+.booking-flow-review {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.booking-flow-summary {
+  display: grid;
+  gap: 0;
+  margin: 0;
+}
+
+.booking-flow-summary > div {
+  display: grid;
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+  gap: .8rem;
+  padding: .65rem 0;
+  border-bottom: 1px solid var(--palette-rule);
+  font-size: .84rem;
+  line-height: 1.5;
+}
+
+.booking-flow-summary dt {
+  color: var(--palette-deep);
+}
+
+.booking-flow-summary dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.booking-flow-notice {
+  margin: 0;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: var(--palette-pink);
+  font-size: .84rem;
+  line-height: 1.65;
+}
+
+.booking-flow-draft summary {
+  width: fit-content;
+  padding: .45rem 0;
+  font-size: .85rem;
+  text-decoration: underline;
+  text-underline-offset: .2em;
+  cursor: pointer;
+}
+
+.booking-flow-draft .field {
+  margin-top: .75rem;
+}
+
+.booking-flow-draft textarea {
+  font-size: .8rem;
+  line-height: 1.6;
+}
+
+.booking-flow-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .6rem;
+}
+
+.booking-flow .btn {
+  white-space: normal;
+  text-align: center;
+  line-height: 1.35;
+}
+
+.booking-flow-back {
+  color: var(--palette-deep);
+  background: transparent;
+  border: 1px solid var(--palette-rule);
+}
+
+.booking-flow .modal-head p { color: var(--palette-deep); }
+.booking-flow .field :is(input, select, textarea) { border-color: var(--palette-rule); }
+.booking-flow .field :is(input, select, textarea):focus {
+  border-color: var(--palette-blue);
+  outline: 2px solid var(--palette-blue);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+@media (max-width: 420px) {
+  .booking-flow-price {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: .65rem;
+  }
+
+  .booking-flow-actions .btn {
+    width: 100%;
+  }
+}

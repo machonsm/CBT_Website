@@ -1,0 +1,122 @@
+/* An experience stays in view while a circular wash reveals its area of work. */
+.help-discovery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1rem, 1.6vw, 1.5rem);
+}
+
+.help-card {
+  --card-colour: var(--palette-orange);
+  --card-ink: var(--palette-ink);
+  --card-wash: var(--palette-pink);
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 1.25rem;
+  min-width: 0;
+  padding: clamp(1.25rem, 2vw, 1.85rem);
+  border-radius: 1.5rem;
+  background: var(--card-colour);
+  color: var(--card-ink);
+  overflow: clip;
+}
+.help-card:nth-child(2) { --card-colour: var(--palette-pink); --card-ink: var(--palette-deep); --card-wash: var(--palette-paper); }
+.help-card:nth-child(3) { --card-colour: var(--palette-blue); --card-wash: var(--palette-paper); }
+.help-card:nth-child(4) { --card-colour: var(--palette-paper); --card-ink: var(--palette-deep); }
+.help-card::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: var(--card-wash);
+  clip-path: circle(0% at calc(100% - 3rem) calc(100% - 3rem));
+  transition: clip-path 680ms var(--ease-out);
+}
+.help-card.is-open::before { clip-path: circle(145% at calc(100% - 3rem) calc(100% - 3rem)); }
+.help-card.is-open { color: var(--palette-deep); }
+.help-card .help-card-experience {
+  position: relative;
+  min-height: 3.3em;
+  margin: 0;
+  color: inherit;
+  font: 400 clamp(1.9rem, 2.4vw, 2.55rem)/1.1 "Instrument Serif", Georgia, serif;
+  letter-spacing: -.015em;
+  text-wrap: pretty;
+}
+.help-card-body { position: relative; display: grid; min-height: 14.5rem; }
+.help-card-art, .help-card-reveal { grid-area: 1 / 1; }
+.help-card-art {
+  display: grid;
+  place-items: center;
+  align-self: stretch;
+  min-height: 12rem;
+  opacity: 1;
+  transition: opacity 200ms ease 150ms, transform 680ms var(--ease-out);
+}
+.help-card-orbit {
+  position: absolute;
+  width: 85%;
+  max-width: 15rem;
+  aspect-ratio: 1;
+  border: 1px solid currentColor;
+  border-radius: 43% 57% 55% 45% / 50% 46% 54% 50%;
+  opacity: .22;
+  rotate: -18deg;
+}
+.help-card-symbol { width: 8rem; height: 8rem; object-fit: contain; rotate: -8deg; }
+.help-card:nth-child(4) .help-card-symbol { height: 10rem; width: 10rem; rotate: 9deg; }
+.help-card-petal { display: block; background: var(--card-ink); mask: url("../src/assets/images/petal-orange.png") center / contain no-repeat; }
+.help-card:nth-child(3) .help-card-petal { background: var(--palette-pink); mask-image: url("../src/assets/images/petal-pink.png"); }
+.help-card-reveal { align-self: end; position: relative; }
+.help-card-thread { display: block; width: 8rem; height: auto; margin-bottom: .65rem; overflow: visible; color: var(--palette-blue); }
+.help-card-thread path { stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.help-card .help-card-eyebrow { margin: 0 0 .6rem; color: inherit; font-size: .64rem; font-weight: 600; line-height: 1.5; letter-spacing: .05em; text-transform: uppercase; }
+.help-card h4 { margin: 0 0 .8rem; color: inherit; font-size: 1.25rem; font-weight: 600; line-height: 1.2; }
+.help-card .help-card-description { margin: 0; color: inherit; font-size: .88rem; line-height: 1.65; }
+.help-card-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+  width: 100%;
+  min-height: 3rem;
+  margin: 0;
+  padding: .8rem 0 0;
+  border: 0;
+  border-top: 1px solid color-mix(in srgb, currentColor 24%, transparent);
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  font: 500 .8rem/1.4 "Instrument Sans", sans-serif;
+  cursor: pointer;
+}
+.help-card-toggle::after { content: ""; position: absolute; inset: 0; }
+.help-card-toggle:focus-visible { outline: none; }
+.help-card:has(.help-card-toggle:focus-visible) { outline: 3px solid var(--palette-paper); outline-offset: 5px; }
+.help-card-toggle-icon { display: grid; place-items: center; flex-shrink: 0; width: 2.7rem; height: 2.7rem; border: 1px solid currentColor; border-radius: 50%; font-size: 1.6rem; font-weight: 400; line-height: 1; transition: rotate 550ms var(--ease-out); }
+.help-card.is-open .help-card-toggle-icon { rotate: 45deg; }
+
+/* Content remains readable if the enhancement is unavailable. */
+.help-card:not(.is-ready) .help-card-art, .help-card:not(.is-ready) .help-card-toggle { display: none; }
+.help-card.is-ready .help-card-reveal { visibility: hidden; opacity: 0; transform: translateY(12px); transition: opacity 180ms ease, transform 420ms var(--ease-out), visibility 0s 180ms; }
+.help-card.is-ready .help-card-thread path { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 650ms var(--ease-out); }
+.help-card.is-ready.is-open .help-card-art { opacity: 0; transform: translateY(-12px) scale(.75) rotate(12deg); transition-delay: 0s; }
+.help-card.is-ready.is-open .help-card-reveal { visibility: visible; opacity: 1; transform: none; transition-delay: 140ms, 140ms, 0s; }
+.help-card.is-ready.is-open .help-card-thread path { stroke-dashoffset: 0; transition-delay: 160ms; }
+
+@media (min-width: 701px) and (max-width: 1150px) {
+  .help-discovery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .help-card { padding: 1.75rem; }
+  .help-card .help-card-experience { min-height: 3.3em; font-size: 2.4rem; }
+}
+@media (max-width: 700px) {
+  .help-discovery-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+  .help-card { gap: 1rem; padding: 1.5rem; border-radius: 1.35rem; }
+  .help-card .help-card-experience { min-height: 0; font-size: clamp(2rem, 7.5vw, 2.8rem); }
+  .help-card-body { min-height: 14rem; }
+  .help-card .help-card-description { font-size: .93rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .help-card *, .help-card::before { transition: none !important; }
+}

@@ -177,10 +177,10 @@ export const translations = {
       subtitle: 'Krótki test gotowości do terapii CBT',
       question: 'Jak często w ostatnim czasie odczuwasz natłok myśli lub lęk?',
       options: [
-        'Rzadko – zazwyczaj radzę sobie ze stresem.',
-        'Czasami – w trudniejszych momentach czuję przeciążenie.',
-        'Często – wyczerpuje mnie ciągłe zamartwianie się.',
-        'Prawie zawsze – lęk i myśli przeszkadzają mi w codziennym funkcjonowaniu.',
+        'Rzadko. Zazwyczaj radzę sobie ze stresem.',
+        'Czasami. W trudniejszych momentach czuję przeciążenie.',
+        'Często. Wyczerpuje mnie ciągłe zamartwianie się.',
+        'Prawie zawsze. Lęk i myśli przeszkadzają mi w codziennym funkcjonowaniu.',
       ],
       recommendationTitle: 'Co mówi Twój wynik?',
       recommendationText: 'Terapia CBT jest wysoce skuteczna w pracy z natłokiem myśli i lękiem. Pierwsza konsultacja to bezpieczny krok do zrozumienia swoich mechanizmów.',
@@ -202,10 +202,10 @@ export const translations = {
           fullContent: [
             'Natłok myśli (tzw. overthinking lub ruminacje) pojawia się wtedy, gdy nasz mózg utknie w pętli poszukiwania zagrożeń. Mimo że wydaje nam się, że "rozwiązujemy problem", w rzeczywistości obciążamy układ nerwowy.',
             'W terapii CBT uczymy się rozróżniać problem produktywny od bezużytecznego zamartwiania się. Zamartwianie się często dotyczy kwestii, na które nie mamy bezpośredniego wpływu tu i teraz.',
-            'Kluczowym krokiem jest zadanie sobie pytania: "Czy mam w tej chwili realny wpływ na tę sytuację?". Jeśli nie – stosujemy techniki zakotwiczenia (oddech 4-7-8, zauważanie bodźców z otoczenia) oraz przekierowanie uwagi.',
+            'Kluczowym krokiem jest zadanie sobie pytania: "Czy mam w tej chwili realny wpływ na tę sytuację?". Jeśli nie, stosujemy techniki zakotwiczenia (oddech 4-7-8, zauważanie bodźców z otoczenia) oraz przekierowanie uwagi.',
           ],
           keyTakeaways: [
-            'Rozpoznaj pętlę "co jeśli?" – to sygnał lękowy, a nie fakt.',
+            'Rozpoznaj pętlę "co jeśli?". To sygnał lękowy, a nie fakt.',
             'Wyznacz 15-minutowe "okienko martwienia się" w ciągu dnia.',
             'Używaj technik zakotwiczenia sensorycznego (5-4-3-2-1).',
           ],
@@ -223,7 +223,7 @@ export const translations = {
             'Zadaj sobie pytanie: "Czy powiedział(a)bym to samo przyjacielowi w podobnej sytuacji?". Zmiana tonu wewnętrznego dialogu zmniejsza poziom kortyzolu i przywraca motywację.',
           ],
           keyTakeaways: [
-            'Oddziel siebie od swojej myśli – myśl to nie absolutna prawda.',
+            'Oddziel siebie od swojej myśli. Myśl to nie absolutna prawda.',
             'Poszukaj dowodów ZA i PRZECIW uogólnionym wnioskom.',
             'Ćwicz wyrozumiałość wobec siebie (self-compassion).',
           ],
@@ -238,7 +238,7 @@ export const translations = {
           fullContent: [
             'Kiedy odczuwamy ostry stres, nasz układ autonomiczny przechodzi w tryb walki lub ucieczki. Zanim zmienimy schemat myślenia, warto wpłynąć bezpośrednio na ciało.',
             'Wzdych fizjologiczny (zrobienie dwóch szybkich wdechów nosem i długiego powolnego wydechu ustami) natychmiast obniża tętno i stymuluje nerw błędny.',
-            'Kolejną metodą jest Progresywna Relaksacja Mięśni Jacobsona – świadome napinanie i rozluźnianie poszczególnych partii ciała.',
+            'Kolejną metodą jest Progresywna Relaksacja Mięśni Jacobsona: świadome napinanie i rozluźnianie poszczególnych partii ciała.',
           ],
           keyTakeaways: [
             'Wzdychanie fizjologiczne resetuje układ nerwowy w kilkanaście sekund.',
@@ -465,10 +465,10 @@ export const translations = {
       subtitle: 'A brief check on your mental wellness',
       question: 'How often do you feel overwhelmed by racing thoughts or anxiety lately?',
       options: [
-        'Rarely – I usually handle daily stress well.',
-        'Sometimes – during tough weeks I feel overloaded.',
-        'Often – constant worrying drains my energy.',
-        'Almost constantly – anxiety interferes with my day-to-day life.',
+        'Rarely. I usually handle daily stress well.',
+        'Sometimes. During tough weeks I feel overloaded.',
+        'Often. Constant worrying drains my energy.',
+        'Almost constantly. Anxiety interferes with my day-to-day life.',
       ],
       recommendationTitle: 'What does this mean?',
       recommendationText: 'CBT therapy is proven to significantly reduce anxiety and overthinking. Booking an initial consultation is a positive step toward relief.',
@@ -493,7 +493,7 @@ export const translations = {
             'A helpful question is: "Do I have direct power over this right now?". If not, grounding exercises (4-7-8 breathing, sensory awareness) help redirect focus.',
           ],
           keyTakeaways: [
-            'Notice "what if?" statements – they are anxiety signals, not facts.',
+            'Notice "what if?" statements. They are anxiety signals, not facts.',
             'Set a dedicated 15-minute "worry time" window during the day.',
             'Use sensory grounding techniques (5-4-3-2-1 rule).',
           ],
@@ -511,7 +511,7 @@ export const translations = {
             'Ask yourself: "Would I talk this way to a close friend in the same position?". Shifting your internal dialogue lowers cortisol and restores motivation.',
           ],
           keyTakeaways: [
-            'Separate identity from thoughts – thoughts are not objective truth.',
+            'Separate identity from thoughts. Thoughts are not objective truth.',
             'Examine evidence FOR and AGAINST negative assumptions.',
             'Practice self-compassionate self-talk.',
           ],

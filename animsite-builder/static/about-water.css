@@ -1,0 +1,297 @@
+/* A quiet water surface gradually lightens into the portrait section. */
+.about-journey {
+  --about-colour-progress: .9145;
+  /* Darker shades of the illustration blue keep paper text readable. */
+  --about-sky: #006fba;
+  --about-sky-start: var(--about-sky);
+  --about-gradient-middle: #0066aa;
+  --about-ink: var(--palette-deep, #211ea3);
+  --about-gradient-shift: 18%;
+  --about-gradient-deep: #0062a4;
+  position: relative;
+  isolation: isolate;
+  background: var(--palette-deep, #211ea3);
+}
+
+.about-profile-panel {
+  --about-sky: #69c2ef;
+  --about-gradient-middle: #45afe8;
+  --about-gradient-deep: #0085de;
+  background: #69c2ef;
+  margin: clamp(.5rem, 1vw, 1rem) clamp(.375rem, .75vw, .75rem) clamp(2rem, 4vw, 4rem);
+  border-radius: clamp(1.5rem, 2.5vw, 2.25rem);
+  overflow: clip;
+}
+
+.about-journey::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  /* Each section has its own uninterrupted colour field. */
+  background-image: linear-gradient(115deg, var(--about-sky) 0%, var(--about-gradient-middle) 20%, var(--about-gradient-deep) 100%);
+  background-size: 180% 220%;
+  background-position: var(--about-gradient-shift) var(--about-gradient-shift);
+  background-repeat: no-repeat;
+  opacity: var(--about-colour-progress);
+  pointer-events: none;
+}
+
+.section-about.about-water {
+  --about-blue: var(--palette-deep, #211ea3);
+  --about-paper: var(--palette-paper, #f3f4ef);
+  --about-text: var(--about-paper);
+  --about-muted: var(--about-paper);
+  --about-rule: #f3f4ef4d;
+  --about-ring: #f3f4ef40;
+  --about-ring-soft: #f3f4ef26;
+  position: relative;
+  padding: 0;
+  scroll-margin-top: 7rem;
+  background: transparent;
+  color: var(--about-text);
+  overflow: clip;
+}
+
+[data-about-transition].about-water {
+  --about-text: var(--about-paper);
+  --about-muted: var(--about-paper);
+  --about-ring: #f3f4ef40;
+  --about-ring-soft: #f3f4ef26;
+}
+
+.about-profile-panel [data-about-transition].about-water {
+  --about-text: var(--palette-deep, #211ea3);
+  --about-muted: var(--palette-deep, #211ea3);
+  --about-ring: #211ea34d;
+  --about-ring-soft: #211ea32b;
+  min-height: 108svh;
+  display: grid;
+  align-items: center;
+}
+
+.about-water-intro {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  min-height: 100svh;
+  padding: 9rem 2rem;
+}
+
+.about-water-canvas {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  mask-image: linear-gradient(to bottom, transparent, black 140px, black calc(100% - 140px), transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 140px, black calc(100% - 140px), transparent);
+}
+
+.about-water-copy {
+  width: min(100%, 51rem);
+  margin-inline: auto;
+  text-align: center;
+}
+
+.about-water-label {
+  margin: 0 0 1.75rem;
+  color: var(--about-text);
+  font-family: "Instrument Sans", sans-serif;
+  font-size: .8rem;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+
+.about-water-statement {
+  max-width: none;
+  margin: 0;
+  color: var(--about-text);
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: clamp(2.1rem, 3.35vw, 3.25rem);
+  font-weight: 400;
+  line-height: 1.22;
+  letter-spacing: 0;
+  text-wrap: pretty;
+}
+
+.about-water-continue {
+  position: absolute;
+  bottom: 3.5rem;
+  left: 50%;
+  translate: -50% 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: 44px;
+  padding: .35rem .4rem .35rem 1.1rem;
+  border-radius: 999px;
+  background: var(--about-paper);
+  color: var(--about-ink);
+  font-size: .75rem;
+  white-space: nowrap;
+}
+
+.about-water-continue > span:last-child {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--palette-rule);
+  border-radius: 50%;
+  font-size: 1.15rem;
+  transition: background 250ms, transform 250ms;
+}
+
+.about-water-continue:hover > span:last-child {
+  background: #0085de1a;
+  transform: translateY(3px);
+}
+
+.about-profile-shell {
+  scroll-margin-top: 7rem;
+  width: min(100% - 8rem, 72rem);
+  margin-inline: auto;
+  padding: clamp(5rem, 8vw, 8rem) 0 clamp(7rem, 10vw, 10rem);
+}
+
+.about-profile-grid {
+  display: grid;
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1.25fr);
+  align-items: center;
+  gap: clamp(3rem, 6vw, 7rem);
+}
+
+.about-portrait {
+  display: grid;
+  justify-items: center;
+  gap: 2.5rem;
+  width: 100%;
+  margin: 0;
+}
+
+.about-portrait-frame {
+  position: relative;
+  width: min(100%, 23rem);
+  aspect-ratio: 1;
+}
+
+.about-portrait-frame::before,
+.about-portrait-frame::after {
+  content: "";
+  position: absolute;
+  inset: -12px;
+  border: 1px solid var(--about-ring);
+  border-radius: 48% 52% 50% 47%;
+  rotate: -12deg;
+  pointer-events: none;
+}
+
+.about-portrait-frame::after {
+  inset: -25px;
+  border-color: var(--about-ring-soft);
+  border-radius: 52% 49% 46% 51%;
+  rotate: 10deg;
+}
+
+.about-portrait-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+}
+
+.about-portrait figcaption {
+  line-height: 1.5;
+  text-align: center;
+}
+
+.about-portrait .about-portrait-name {
+  color: var(--about-text);
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: clamp(1.75rem, 2.6vw, 2.4rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.about-profile-label {
+  margin-bottom: 1rem;
+}
+
+.about-biography h3 {
+  margin: 0 0 1.75rem;
+  color: var(--about-text);
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: clamp(2.35rem, 3.4vw, 3.25rem);
+  font-weight: 400;
+  line-height: 1.06;
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+
+.about-biography-text {
+  display: grid;
+  gap: 1rem;
+}
+
+.about-biography-text p {
+  max-width: none;
+  margin: 0;
+  color: var(--about-muted);
+  font-size: .93rem;
+  line-height: 1.8;
+}
+
+@media (max-width: 900px) {
+  .about-water-copy { width: min(100%, 42rem); }
+  .about-water-statement { font-size: clamp(2.1rem, 4.8vw, 3rem); }
+  .about-profile-shell { width: calc(100% - 4rem); padding-top: 3rem; }
+  .about-profile-grid { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 3rem; }
+  .about-portrait-frame { width: min(100%, 19rem); }
+  .about-biography h3 { font-size: 2.5rem; }
+}
+
+@media (max-width: 650px) {
+  .about-journey::before {
+    background-image: linear-gradient(180deg, var(--about-sky-start) 0%, var(--about-gradient-middle) 20%, var(--about-gradient-deep) 100%);
+    background-size: 100% 220%;
+    background-position: center var(--about-gradient-shift);
+  }
+  .section-about.about-water, .about-profile-shell { scroll-margin-top: 5.75rem; }
+  .about-water-intro { min-height: 90svh; padding: 8rem 1.5rem; }
+  .about-water-label { font-size: .7rem; margin-bottom: 1.5rem; }
+  .about-water-statement { font-size: clamp(1.9rem, 7.8vw, 2.65rem); line-height: 1.25; }
+  .about-water-continue { bottom: 2rem; font-size: .7rem; }
+  .about-profile-shell { width: calc(100% - 3rem); padding: 3rem 0 4.5rem; }
+  .about-profile-grid { grid-template-columns: 1fr; gap: 3.5rem; }
+  .about-portrait-frame { width: min(74vw, 18rem); }
+  .about-portrait { gap: 2.25rem; }
+  .about-biography h3 { max-width: 15ch; font-size: 2.55rem; margin-bottom: 1.5rem; }
+  .about-biography-text p { font-size: .9rem; line-height: 1.75; }
+}
+
+@media (max-height: 550px) and (min-width: 651px) {
+  .about-water-intro { min-height: 36rem; padding: 7rem 2rem; }
+}
+
+@media (max-width: 600px) {
+  body[data-active-section="help"] .motion-toggle,
+  body[data-active-section="about"] .motion-toggle {
+    color: var(--palette-paper, #f3f4ef);
+    background: #211ea3e6;
+    border: 1px solid #f3f4ef66;
+  }
+  body[data-active-section="help"] .motion-toggle[aria-pressed="true"],
+  body[data-active-section="about"] .motion-toggle[aria-pressed="true"] {
+    color: var(--palette-deep, #211ea3);
+    background: var(--palette-paper, #f3f4ef);
+  }
+}
