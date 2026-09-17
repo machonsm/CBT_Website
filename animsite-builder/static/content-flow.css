@@ -128,8 +128,16 @@ html[lang="en"] .content-flow .landing-scroll .display { font-size: min(12vw, 17
 .content-flow .flow-help-explore,
 .content-flow .flow-help-explore:hover { text-decoration: none; }
 /* Animate the contents while the link's touch and pointer target stays still. */
-.content-flow .flow-help-explore > span { text-decoration: none; animation: help-cue-float 3s ease-in-out infinite; }
-.content-flow .flow-help-explore > span:last-child { flex-shrink: 0; font-size: 1.3rem; }
+.content-flow .flow-help-wave { display: inline-flex; align-items: baseline; text-decoration: none; white-space: nowrap; }
+.content-flow .flow-help-wave-letter { display: inline-block; transform-origin: 50% 100%; animation: help-letter-wave 2.6s ease-in-out infinite; animation-delay: calc(var(--wave-index) * 55ms - 2.6s); }
+.content-flow .flow-help-wave-space { display: inline-block; width: .28em; }
+.content-flow .flow-help-wave-arrow { flex-shrink: 0; font-size: 1.3rem; text-decoration: none; animation: help-cue-float 3s ease-in-out infinite; }
+@keyframes help-letter-wave {
+  0%, 18%, 52%, 100% { transform: translateY(0) rotate(0); }
+  27% { transform: translateY(-.42em) rotate(-3deg); }
+  36% { transform: translateY(.12em) rotate(2deg); }
+  43% { transform: translateY(-.08em) rotate(-1deg); }
+}
 @keyframes help-cue-float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(6px); }
@@ -167,45 +175,25 @@ html[lang="en"] .content-flow .landing-scroll .display { font-size: min(12vw, 17
 
 .content-flow .about-profile-shell { padding-block: clamp(5rem, 8vw, 8rem) clamp(7rem, 10vw, 10rem); }
 .content-flow .flow-education { margin-top: 1.5rem; border-block: 1px solid #f3f4ef4d; }
-.content-flow .flow-education summary { padding: 1rem 0; color: var(--flow-paper); font-size: .9rem; font-weight: 500; line-height: 1.5; cursor: pointer; }
-.content-flow .flow-education summary:focus-visible { outline-color: var(--flow-paper); }
+.content-flow .about-profile-panel .flow-education { border-color: #211ea338; }
+.content-flow .flow-education + .flow-education { margin-top: -1px; }
+.content-flow .flow-education summary { padding: 1rem 0; color: var(--about-text); font-size: .9rem; font-weight: 500; line-height: 1.5; cursor: pointer; }
+.content-flow .flow-education summary:focus-visible { outline-color: var(--about-text); }
 .content-flow .flow-education > div { display: grid; gap: .9rem; padding: 0 0 1.2rem; }
 .content-flow .flow-education p { margin: 0; color: var(--about-muted); font-size: .88rem; line-height: 1.75; }
 .content-flow .flow-school-source { color: inherit; text-decoration: underline; text-underline-offset: .2em; }
+.content-flow .flow-certification > div { padding-right: clamp(0rem, 3vw, 2rem); }
 
-/* Therapy and the first meeting sit next to a concrete, readable example. */
+/* The compact ABC model sits alongside the CBT explanation. */
 .content-flow .section-therapy { background: var(--flow-paper); }
-.content-flow .section-therapy .therapy-redesign-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: clamp(2rem, 5vw, 5rem); }
+.content-flow .section-therapy .therapy-redesign-grid { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); align-items: start; gap: clamp(2rem, 3vw, 3rem); }
+.content-flow .section-therapy .flow-cbt-principles { margin-top: .75rem; }
 .content-flow .section-therapy .section-copy,
 .content-flow .section-therapy .section-copy-block p { color: var(--flow-ink); font-size: 1rem; line-height: 1.75; }
 .content-flow .section-therapy .link-arrow { color: var(--palette-deep); }
 .content-flow .flow-cbt-principles { display: grid; gap: 1.6rem; }
 .content-flow .flow-cbt-principles h3 { margin: 0 0 .55rem; color: var(--flow-blue); font-size: 1.05rem; line-height: 1.5; }
-.content-flow .flow-cbt-principles p { margin: 0; }
-.content-flow .section-therapy .therapy-model-panel { width: 100%; min-width: 0; align-content: start; justify-items: stretch; gap: 1rem; padding: clamp(1.25rem, 2.2vw, 2rem); }
-.content-flow .model-caption { align-items: baseline; gap: 1rem; margin: 0; font-family: "Instrument Serif", Georgia, serif; font-size: clamp(1.8rem, 2.5vw, 2.3rem); font-weight: 400; line-height: 1.2; }
-.content-flow .cbt-model-intro { margin: 0; color: var(--flow-ink); font-size: .9rem; line-height: 1.65; }
-.content-flow .section-therapy .model-illustration { height: clamp(12rem, 17vw, 16rem); }
-.content-flow .cbt-loop { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-.content-flow .cbt-loop button { min-height: 3rem; padding: .65rem .3rem; font-size: .72rem; line-height: 1.3; }
-.content-flow .cbt-description { display: grid; align-content: center; min-height: 4.5rem; margin: 0; padding: .9rem; border-radius: .6rem; background: var(--palette-pink); }
-.content-flow .model-hint { margin: 0; font-size: .76rem; line-height: 1.5; }
-.content-flow .cbt-experiment { min-width: 0; margin: .5rem 0 0; padding: 0; border: 0; }
-.content-flow .cbt-experiment legend { margin-bottom: 1rem; padding: 0; color: var(--flow-blue); font-size: 1rem; font-weight: 600; line-height: 1.5; }
-.content-flow .cbt-choices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; }
-.content-flow .cbt-choices button { display: flex; align-items: center; gap: .7rem; min-width: 0; min-height: 3.4rem; padding: .8rem; border: 1px solid var(--palette-rule); border-radius: .8rem; background: transparent; color: var(--flow-blue); font: inherit; font-size: .84rem; line-height: 1.4; text-align: left; cursor: pointer; transition: background 250ms, color 250ms; }
-.content-flow .cbt-choices button > span { font-size: 1.5rem; }
-.content-flow .cbt-choices button:hover { background: var(--palette-pink); }
-.content-flow .cbt-choices button[aria-pressed="true"] { background: var(--flow-blue); color: var(--flow-paper); border-color: var(--flow-blue); }
-.content-flow .cbt-result { display: grid; grid-template-columns: 5rem minmax(0, 1fr); align-items: start; gap: .8rem; min-height: 9rem; padding-top: .4rem; }
-.content-flow .cbt-route { width: 100%; margin-top: .3rem; overflow: visible; color: var(--palette-deep); }
-.content-flow .cbt-route path { stroke: currentColor; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
-.content-flow .cbt-route-loop { opacity: 1; transition: opacity 350ms; }
-.content-flow .cbt-route-forward { opacity: 0; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 650ms var(--ease-out), opacity 350ms; }
-.content-flow [data-cbt-scenario="1"] .cbt-route-loop { opacity: .12; }
-.content-flow [data-cbt-scenario="1"] .cbt-route-forward { opacity: 1; stroke-dashoffset: 0; }
-.content-flow .cbt-result p { margin: 0; color: var(--flow-ink); font-size: .9rem; line-height: 1.7; }
-.content-flow .cbt-example-note { margin: 0; padding-top: 1rem; border-top: 1px solid var(--palette-rule); color: var(--flow-ink); font-size: .78rem; line-height: 1.65; }
+.content-flow .flow-cbt-principles p { margin: 0; color: var(--flow-ink); font-size: 1rem; line-height: 1.75; }
 .content-flow .flow-partnership { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 2.5rem; align-items: start; margin-top: clamp(3rem, 5vw, 5rem); padding-block: clamp(2rem, 3vw, 3rem); border-block: 1px solid var(--palette-rule); }
 .content-flow .flow-partnership h3,
 .content-flow .flow-independence h3 { margin: 0; color: var(--flow-blue); font-family: "Instrument Serif", Georgia, serif; font-size: clamp(2.1rem, 3.2vw, 3rem); font-weight: 400; line-height: 1.15; text-wrap: balance; }
@@ -327,10 +315,8 @@ html[lang="en"] .content-flow .landing-scroll .display { font-size: min(12vw, 17
   .content-flow .flow-blog-grid .article-body h3 { font-size: 1.15rem; }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1099px) {
   .content-flow .section-therapy .therapy-redesign-grid { grid-template-columns: 1fr; }
-  .content-flow .section-therapy .therapy-model-panel { max-width: 40rem; justify-self: center; }
-  .content-flow .section-therapy .model-illustration { height: 15rem; }
 }
 
 @media (max-width: 700px) {
@@ -384,13 +370,6 @@ html[lang="en"] .content-flow .landing-scroll .display { font-size: min(12vw, 17
   .content-flow .flow-question > summary { gap: 1rem; font-size: 1rem; }
   .content-flow .flow-question > div { padding-right: 1rem; }
   .content-flow .flow-question p { font-size: .94rem; }
-  .content-flow .cbt-loop { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .content-flow .cbt-loop button { font-size: .8rem; }
-  .content-flow .cbt-loop button:last-child { grid-column: 1 / -1; }
-  .content-flow .cbt-description { min-height: 4rem; }
-  .content-flow .cbt-result { grid-template-columns: 1fr; gap: .2rem; min-height: 11rem; }
-  .content-flow .cbt-route { width: 5rem; }
-  .content-flow .cbt-choices { grid-template-columns: 1fr; }
   .content-flow .flow-blog-grid { grid-template-columns: 1fr; gap: 1.25rem; }
   .content-flow .flow-blog-grid .blog-art { height: 12rem; }
   .content-flow .flow-blog-grid .article-body { padding: 1.4rem; }
@@ -405,6 +384,8 @@ html[lang="en"] .content-flow .landing-scroll .display { font-size: min(12vw, 17
 .reduced-motion .content-flow .landing-scroll .hero { position: relative; top: auto; }
 
 @media (prefers-reduced-motion: reduce) {
+  .content-flow .flow-help-wave-letter,
+  .content-flow .flow-help-wave-arrow { animation: none; }
   .content-flow .landing-scroll { height: auto; }
   .content-flow .landing-scroll .hero { position: relative; top: auto; }
 }

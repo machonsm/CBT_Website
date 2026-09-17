@@ -1,4 +1,4 @@
-/* An experience stays in view while a circular wash reveals its area of work. */
+/* Illustrated situations open into the original symbols and areas of work. */
 .help-discovery-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -7,8 +7,11 @@
 
 .help-card {
   --card-colour: var(--palette-orange);
-  --card-ink: var(--palette-ink);
-  --card-wash: var(--palette-pink);
+  --card-ink: var(--palette-deep);
+  --card-wash: var(--palette-blue);
+  --card-open-ink: var(--palette-ink);
+  --card-control-ink: var(--palette-ink);
+  --card-cue-delay: 0s;
   position: relative;
   isolation: isolate;
   display: grid;
@@ -21,9 +24,10 @@
   color: var(--card-ink);
   overflow: clip;
 }
-.help-card:nth-child(2) { --card-colour: var(--palette-pink); --card-ink: var(--palette-deep); --card-wash: var(--palette-paper); }
-.help-card:nth-child(3) { --card-colour: var(--palette-blue); --card-wash: var(--palette-paper); }
-.help-card:nth-child(4) { --card-colour: var(--palette-paper); --card-ink: var(--palette-deep); }
+/* Main illustration palette, with artwork recoloured for each surface. */
+.help-card[data-help-card="stress"] { --card-colour: var(--palette-pink); --card-wash: var(--palette-paper); --card-open-ink: var(--palette-deep); --card-control-ink: var(--palette-deep); --card-cue-delay: -1.5s; }
+.help-card[data-help-card="mood"] { --card-colour: var(--palette-blue); --card-wash: var(--palette-orange); --card-cue-delay: -3s; }
+.help-card[data-help-card="overthinking"] { --card-colour: var(--palette-paper); --card-wash: var(--palette-pink); --card-ink: var(--palette-deep); --card-open-ink: var(--palette-deep); --card-control-ink: var(--palette-deep); --card-cue-delay: -4.5s; }
 .help-card::before {
   content: "";
   position: absolute;
@@ -34,7 +38,31 @@
   transition: clip-path 680ms var(--ease-out);
 }
 .help-card.is-open::before { clip-path: circle(145% at calc(100% - 3rem) calc(100% - 3rem)); }
-.help-card.is-open { color: var(--palette-deep); }
+.help-card::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  right: 0;
+  bottom: 0;
+  width: 6.5rem;
+  height: 6.5rem;
+  border-radius: 100% 0 0 0;
+  background: var(--card-wash);
+  opacity: .5;
+  transform-origin: bottom right;
+  pointer-events: none;
+}
+.help-card.is-ready:not(.is-open)::after {
+  animation: help-corner-invitation 6s ease-in-out infinite;
+  animation-delay: var(--card-cue-delay);
+}
+.help-card.is-open::after, .help-card:not(.is-ready)::after { opacity: 0; }
+@keyframes help-corner-invitation {
+  0%, 100% { opacity: .28; transform: scale(.82); }
+  50% { opacity: .85; transform: scale(1.08); }
+}
+.help-card.is-open { color: var(--card-open-ink); }
+.help-card.is-open .help-card-experience { color: var(--palette-deep); }
 .help-card .help-card-experience {
   position: relative;
   min-height: 3.3em;
@@ -44,33 +72,28 @@
   letter-spacing: -.015em;
   text-wrap: pretty;
 }
-.help-card-body { position: relative; display: grid; min-height: 14.5rem; }
+.help-card-body { position: relative; display: grid; min-height: 17.5rem; min-width: 0; }
 .help-card-art, .help-card-reveal { grid-area: 1 / 1; }
 .help-card-art {
   display: grid;
   place-items: center;
   align-self: stretch;
-  min-height: 12rem;
+  min-width: 0;
   opacity: 1;
   transition: opacity 200ms ease 150ms, transform 680ms var(--ease-out);
 }
-.help-card-orbit {
-  position: absolute;
-  width: 85%;
-  max-width: 15rem;
-  aspect-ratio: 1;
-  border: 1px solid currentColor;
-  border-radius: 43% 57% 55% 45% / 50% 46% 54% 50%;
-  opacity: .22;
-  rotate: -18deg;
+.help-card-cover { display: block; width: 100%; max-width: 20rem; height: auto; aspect-ratio: 1; object-fit: contain; }
+.help-card .help-card-cover {
+  /* Blend the plain outer margin without fading the foreground artwork. */
+  mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent), linear-gradient(to bottom, transparent, #000 2%, #000 98%, transparent);
+  mask-composite: intersect;
 }
-.help-card-symbol { width: 8rem; height: 8rem; object-fit: contain; rotate: -8deg; }
-.help-card:nth-child(4) .help-card-symbol { height: 10rem; width: 10rem; rotate: 9deg; }
-.help-card-petal { display: block; background: var(--card-ink); mask: url("../src/assets/images/petal-orange.png") center / contain no-repeat; }
-.help-card:nth-child(3) .help-card-petal { background: var(--palette-pink); mask-image: url("../src/assets/images/petal-pink.png"); }
-.help-card-reveal { align-self: end; position: relative; }
-.help-card-thread { display: block; width: 8rem; height: auto; margin-bottom: .65rem; overflow: visible; color: var(--palette-blue); }
-.help-card-thread path { stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.help-card-inside-art { display: flex; align-items: center; min-height: 4.5rem; margin-bottom: 1rem; }
+.help-card-symbol { display: block; width: 4.25rem; height: 4.25rem; object-fit: contain; rotate: -8deg; }
+.help-card:nth-child(4) .help-card-symbol { height: 4.5rem; width: 4.5rem; rotate: 9deg; }
+.help-card-petal { background: var(--palette-deep); mask: url("../src/assets/images/petal-orange.png") center / contain no-repeat; }
+.help-card:nth-child(3) .help-card-petal { mask-image: url("../src/assets/images/petal-pink.png"); }
+.help-card-reveal { align-self: center; position: relative; }
 .help-card .help-card-eyebrow { margin: 0 0 .6rem; color: inherit; font-size: .64rem; font-weight: 600; line-height: 1.5; letter-spacing: .05em; text-transform: uppercase; }
 .help-card h4 { margin: 0 0 .8rem; color: inherit; font-size: 1.25rem; font-weight: 600; line-height: 1.2; }
 .help-card .help-card-description { margin: 0; color: inherit; font-size: .88rem; line-height: 1.65; }
@@ -86,24 +109,23 @@
   border: 0;
   border-top: 1px solid color-mix(in srgb, currentColor 24%, transparent);
   background: transparent;
-  color: inherit;
+  color: var(--card-control-ink);
   text-align: left;
   font: 500 .8rem/1.4 "Instrument Sans", sans-serif;
   cursor: pointer;
 }
+.help-card.is-open .help-card-toggle { color: var(--card-open-ink); }
 .help-card-toggle::after { content: ""; position: absolute; inset: 0; }
 .help-card-toggle:focus-visible { outline: none; }
 .help-card:has(.help-card-toggle:focus-visible) { outline: 3px solid var(--palette-paper); outline-offset: 5px; }
-.help-card-toggle-icon { display: grid; place-items: center; flex-shrink: 0; width: 2.7rem; height: 2.7rem; border: 1px solid currentColor; border-radius: 50%; font-size: 1.6rem; font-weight: 400; line-height: 1; transition: rotate 550ms var(--ease-out); }
-.help-card.is-open .help-card-toggle-icon { rotate: 45deg; }
+.help-card-toggle-icon { display: grid; place-items: center; flex-shrink: 0; width: 2.7rem; height: 2.7rem; border: 1px solid currentColor; border-radius: 50%; background: var(--card-colour); font-size: 1.6rem; font-weight: 400; line-height: 1; transition: rotate 550ms var(--ease-out); }
+.help-card.is-open .help-card-toggle-icon { background: var(--card-wash); rotate: 45deg; }
 
 /* Content remains readable if the enhancement is unavailable. */
 .help-card:not(.is-ready) .help-card-art, .help-card:not(.is-ready) .help-card-toggle { display: none; }
 .help-card.is-ready .help-card-reveal { visibility: hidden; opacity: 0; transform: translateY(12px); transition: opacity 180ms ease, transform 420ms var(--ease-out), visibility 0s 180ms; }
-.help-card.is-ready .help-card-thread path { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 650ms var(--ease-out); }
-.help-card.is-ready.is-open .help-card-art { opacity: 0; transform: translateY(-12px) scale(.75) rotate(12deg); transition-delay: 0s; }
+.help-card.is-ready.is-open .help-card-art { opacity: 0; transform: translateY(-8px) scale(.94); transition-delay: 0s; }
 .help-card.is-ready.is-open .help-card-reveal { visibility: visible; opacity: 1; transform: none; transition-delay: 140ms, 140ms, 0s; }
-.help-card.is-ready.is-open .help-card-thread path { stroke-dashoffset: 0; transition-delay: 160ms; }
 
 @media (min-width: 701px) and (max-width: 1150px) {
   .help-discovery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -114,9 +136,9 @@
   .help-discovery-grid { grid-template-columns: 1fr; gap: 1.2rem; }
   .help-card { gap: 1rem; padding: 1.5rem; border-radius: 1.35rem; }
   .help-card .help-card-experience { min-height: 0; font-size: clamp(2rem, 7.5vw, 2.8rem); }
-  .help-card-body { min-height: 14rem; }
+  .help-card-body { min-height: 17rem; }
   .help-card .help-card-description { font-size: .93rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .help-card *, .help-card::before { transition: none !important; }
+  .help-card *, .help-card::before, .help-card::after { animation: none !important; transition: none !important; }
 }

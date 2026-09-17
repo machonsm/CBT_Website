@@ -70,18 +70,18 @@
         womenAdhdText: "Jest tu również miejsce na rozmowę o doświadczeniu ADHD: organizowaniu codzienności, przeciążeniu, relacjach i sposobie, w jaki myślisz o sobie. Wspólnie przyglądamy się trudnościom i szukamy rozwiązań dopasowanych do Twojej sytuacji.",
       },
       about: {
+        name: "mgr Sandra Machoń",
         title: "O mnie",
         subtitle: "Psychoterapia oparta na metodzie i dopasowana do człowieka",
         paragraphs: [
           "Cześć, nazywam się Sandra Machoń. Jestem psychoterapeutką w trakcie certyfikacji. Prowadzę psychoterapię osób dorosłych w nurcie poznawczo-behawioralnym, online, po polsku i angielsku.",
           "Jestem na trzecim roku czteroletniej Szkoły Psychoterapii Poznawczo-Behawioralnej WSB-NLU. Pracuję pod superwizją.",
-          "Wykształcenie zdobywałam w Londynie. Ukończyłam psychologię (BSc) na University of Roehampton oraz zdobyłam tytuł magistra (MSc) z neuronauki w King’s College London. Pracowałam jako asystentka badawcza w obszarze neuronauki poznawczej. W pracy badawczej zajmowałam się związkiem doświadczeń traumy z dzieciństwa ze strukturą mózgu oraz rolą regulacji emocji w uzależnieniach.",
+          "Pracowałam jako asystentka badawcza w obszarze neuronauki poznawczej. W pracy badawczej zajmowałam się związkiem doświadczeń traumy z dzieciństwa ze strukturą mózgu oraz rolą regulacji emocji w uzależnieniach.",
           "To naukowe zaplecze jest jednym z powodów, dla których bliskie jest mi CBT: sposób pracy wynika z modelu psychologicznego, dostępnych badań i indywidualnego rozumienia problemu konkretnej osoby. Twoje doświadczenia, cele i informacja o tym, co jest pomocne, współtworzą kierunek terapii.",
         ],
         educationTitle: "Wykształcenie i szkolenia",
         education: [
           "Wykształcenie akademickie zdobywałam w Londynie: psychologia (BSc) na University of Roehampton oraz tytuł magistra (MSc) z neuronauki w King’s College London.",
-          "Doświadczenie badawcze: praca jako asystentka badawcza w obszarze neuronauki poznawczej oraz badania nad związkiem traumy z dzieciństwa ze strukturą mózgu i rolą regulacji emocji w uzależnieniach.",
           "Szkolenie psychoterapeutyczne: trzeci rok czteroletniego programu CBT w WSB-NLU. Program szkoły posiada akredytację Polskiego Stowarzyszenia Psychologów, Psychoterapeutów i Lekarzy (PSPPiL) oraz Professional School of Health Sciences (PSoHS). Akredytacje dotyczą programu kształcenia. Jestem w trakcie szkolenia, a nie po uzyskaniu certyfikatu psychoterapeuty.",
           "Ukończyłam także szkolenie z afirmującego wsparcia osób LGBT+.",
         ],
@@ -96,23 +96,142 @@
           { title: "Wspólne cele i konkretna praca", text: "Sesje mają strukturę i cele, do których regularnie wracamy. Częścią terapii może być praca między spotkaniami: obserwacje, ćwiczenia, eksperymenty behawioralne lub wypróbowanie nowego sposobu działania. Ustalamy je wspólnie i sprawdzamy, co pomaga." },
           { title: "Więcej możliwości reagowania", text: "CBT jest terapią aktywną. Nie polega na mówieniu Ci, co masz myśleć, ani na przekonywaniu do pozytywnego myślenia. Uczymy się rozpoznawać wzorce myślenia i zachowania, sprawdzać ich trafność i użyteczność oraz budować inne sposoby reagowania." },
         ],
-        modelTitle: "Model poznawczy CBT",
-        modelIntro: "Zobacz, jak myśli, emocje, ciało i zachowanie wiążą się w jednej sytuacji.",
-        modelHint: "Wybierz element, aby przyjrzeć się przykładowi.",
-        steps: [
-          { label: "Sytuacja", description: "Czeka mnie ważna rozmowa." },
-          { label: "Myśl", description: "„Na pewno się skompromituję”." },
-          { label: "Emocja", description: "Lęk." },
-          { label: "Ciało", description: "Napięcie, ścisk w żołądku." },
-          { label: "Zachowanie", description: "Odkładam rozmowę.", alternative: "Idę na rozmowę mimo lęku." },
-        ],
-        experimentTitle: "Co się stanie, jeśli zmienimy jeden element?",
-        experimentChoices: ["Odkładam rozmowę", "Idę na rozmowę mimo lęku"],
-        experimentOutcomes: [
-          "Unikanie może przynieść chwilową ulgę. Nie daje jednak okazji, by sprawdzić, czy obawa się potwierdzi. Rozmowa wciąż jest przede mną.",
-          "Lęk i napięcie nie muszą od razu minąć. Rozmowa daje możliwość zebrania nowych informacji: co się wydarzyło, jak sobie poradziłam lub poradziłem i czego mogę się nauczyć?",
-        ],
-        experimentNote: "To uproszczony przykład, nie historia konkretnej osoby. Zmiana zachowania nie gwarantuje zmiany myśli ani emocji. W terapii taki krok planujemy wspólnie, w odpowiednim dla Ciebie tempie.",
+        model: {
+          "label": "Zobacz na przykładzie",
+          "title": "Jedna sytuacja. Różne możliwości.",
+          "intro": "Znaczenie, jakie nadajemy sytuacji, wiąże się z tym, co czujemy i jak reagujemy. Zmień przykład i sprawdź, jak te elementy mogą na siebie wpływać.",
+          "sceneLabel": "Wybierz sytuację",
+          "perspectiveLabel": "Przyjrzyj się interpretacji",
+          "perspectives": [
+            "Pierwsza myśl",
+            "Inne spojrzenie"
+          ],
+          "diagramLabel": "Model ABC: sytuacja, myśli i przekonania oraz konsekwencje",
+          "hint": "Kliknij element modelu, aby poznać go bliżej.",
+          "consequences": "Konsekwencje",
+          "cycleLabel": "Elementy wzajemnie na siebie wpływają",
+          "detailLabel": "Przyjrzyjmy się temu",
+          "questionLabel": "Pytanie do refleksji",
+          "updated": "Model zaktualizowany.",
+          "note": "To przykładowe reakcje, nie diagnoza ani przewidywanie Twoich odczuć. Inna interpretacja nie musi od razu zmienić emocji czy napięcia. W terapii szukamy spojrzenia opartego na faktach, a nie myślenia na siłę pozytywnego.",
+          "sourceLabel": "Na podstawie modelu ABC Alberta Ellisa",
+          "sourceUrl": "https://albertellis.org/rebt-in-the-context-of-modern-psychological-research/",
+          "nodes": [
+            {
+              "id": "situation",
+              "letter": "A",
+              "label": "Sytuacja",
+              "explanation": "Zaczynamy od tego, co się wydarzyło. Oddzielamy obserwowalne fakty od znaczenia, które im przypisujemy.",
+              "question": "Co mogłaby zarejestrować kamera, bez domyślania się intencji?"
+            },
+            {
+              "id": "belief",
+              "letter": "B",
+              "label": "Myśli i przekonania",
+              "explanation": "To sposób, w jaki rozumiemy zdarzenie: nasze przewidywania, oceny i przekonania o sobie, innych lub świecie. Myśl może wydawać się pewnikiem, choć nie jest faktem.",
+              "question": "Co przemawia za tą myślą, a co może wskazywać na inne wyjaśnienie?"
+            },
+            {
+              "id": "emotion",
+              "letter": "C",
+              "label": "Emocje",
+              "explanation": "Emocje są częścią naszej reakcji. Najpierw próbujemy je rozpoznać i nazwać. Nie musimy ich oceniać ani natychmiast zmieniać.",
+              "question": "Jak nazwiesz to uczucie i jak silne jest w tej chwili?"
+            },
+            {
+              "id": "behaviour",
+              "letter": "C",
+              "label": "Zachowanie",
+              "explanation": "To, co robimy lub czego unikamy, może przynosić chwilową ulgę, podtrzymywać trudność albo dawać nowe doświadczenia. Przyglądamy się skutkom w krótszej i dłuższej perspektywie.",
+              "question": "Co daje mi ta reakcja teraz, a jak wpływa na mnie później?"
+            },
+            {
+              "id": "body",
+              "letter": "C",
+              "label": "Reakcje ciała",
+              "explanation": "Napięcie mięśni, oddech czy bicie serca również są częścią reakcji. To, jak odczytujemy te sygnały, może z kolei wpływać na nasze myśli i emocje.",
+              "question": "Co zauważam w ciele i jakie znaczenie temu nadaję?"
+            }
+          ],
+          "scenarios": [
+            {
+              "id": "message",
+              "label": "Brak odpowiedzi",
+              "situation": "Od kilku godzin nie ma odpowiedzi na moją wiadomość.",
+              "views": [
+                {
+                  "belief": "„Ignoruje mnie. To znaczy, że nie jestem ważną osobą.”",
+                  "emotion": "Niepokój, smutek, poczucie odrzucenia.",
+                  "body": "Ścisk w żołądku, napięte ramiona.",
+                  "behaviour": "Co chwilę sprawdzam telefon i ponownie czytam wiadomość."
+                },
+                {
+                  "belief": "„Nie wiem, skąd ta cisza. Brak odpowiedzi nie określa mojej wartości.”",
+                  "emotion": "Niepewność i niepokój mogą nadal być obecne.",
+                  "body": "Napięcie może pozostać, nawet gdy odkładam telefon.",
+                  "behaviour": "Wracam do swoich zajęć. Jeśli to ważne, później dopytuję."
+                }
+              ]
+            },
+            {
+              "id": "conversation",
+              "label": "Rozmowa w pracy",
+              "situation": "Osoba z pracy prosi mnie o rozmowę, nie podając tematu.",
+              "views": [
+                {
+                  "belief": "„Na pewno coś jest nie tak. Nie mogę popełniać błędów.”",
+                  "emotion": "Lęk, wstyd jeszcze przed rozmową.",
+                  "body": "Szybsze bicie serca, napięcie w brzuchu.",
+                  "behaviour": "Odkładam rozmowę i układam w głowie kolejne wyjaśnienia."
+                },
+                {
+                  "belief": "„Nie znam tematu. Nawet jeśli chodzi o błąd, mogę szukać rozwiązania.”",
+                  "emotion": "Obawa i ciekawość tego, czego dotyczy rozmowa.",
+                  "body": "Serce nadal może bić szybciej.",
+                  "behaviour": "Pytam o temat i idę na rozmowę mimo niepewności."
+                }
+              ]
+            },
+            {
+              "id": "overload",
+              "label": "Dużo obowiązków",
+              "situation": "Pod koniec dnia kilka zadań wciąż czeka na zrobienie.",
+              "views": [
+                {
+                  "belief": "„Muszę zrobić wszystko. Jeśli nie daję rady, zawodzę.”",
+                  "emotion": "Przytłoczenie, poczucie winy, frustracja.",
+                  "body": "Zmęczenie, zaciśnięta szczęka i napięty kark.",
+                  "behaviour": "Rezygnuję z przerwy i próbuję robić kilka rzeczy naraz."
+                },
+                {
+                  "belief": "„Mam ograniczony czas i energię. Nie wszystko musi być zrobione dziś.”",
+                  "emotion": "Frustracja może pozostać, obok poczucia większego wpływu.",
+                  "body": "Zmęczenie nadal jest sygnałem, że potrzebuję odpoczynku.",
+                  "behaviour": "Wybieram jedno ważne zadanie, resztę przekładam lub proszę o pomoc."
+                }
+              ]
+            },
+            {
+              "id": "rumination",
+              "label": "Powrót do rozmowy",
+              "situation": "Wieczorem przypominam sobie własną wypowiedź ze spotkania.",
+              "views": [
+                {
+                  "belief": "„To zabrzmiało głupio. Muszę ustalić, co wszyscy o mnie pomyśleli.”",
+                  "emotion": "Wstyd, niepokój, żal do siebie.",
+                  "body": "Napięcie, trudność z wyciszeniem przed snem.",
+                  "behaviour": "Odtwarzam rozmowę w głowie, szukając pewności, której nie znajduję."
+                },
+                {
+                  "belief": "„Nie znam myśli innych. Jedna wypowiedź nie określa mnie jako osoby.”",
+                  "emotion": "Skrępowanie i niepewność nie muszą od razu zniknąć.",
+                  "body": "Pobudzenie może jeszcze przez pewien czas się utrzymywać.",
+                  "behaviour": "Zauważam powracającą analizę i kieruję uwagę na to, co robię teraz."
+                }
+              ]
+            }
+          ]
+        },
         partnershipTitle: "Ty znasz teren. Ja znam narzędzia.",
         partnershipText: "Terapię można porównać do wspólnego wejścia na górę. Ty znasz własne doświadczenia, historię i to, co jest dla Ciebie ważne. Ja wnoszę wiedzę o CBT, mapy i narzędzia. Kierunek i tempo ustalamy wspólnie, a po drodze sprawdzamy, co działa i co wymaga zmiany.",
         learnMore: "Jak wygląda pierwsze spotkanie?",
@@ -126,11 +245,11 @@
           "Opowiem Ci, jak pracuję, przedstawię zasady współpracy i odpowiem na pytania. Pierwsza konsultacja jest początkiem wspólnego rozpoznawania problemu.",
         ],
         highlight: "Pierwsza konsultacja nie zobowiązuje Cię do rozpoczęcia terapii.",
-        ending: "Czasem do zaproponowania dalszej pracy potrzebne są kolejne spotkania konsultacyjne. Jeśli uznam, że potrzebujesz innej formy pomocy, porozmawiamy o możliwych dalszych krokach.",
+        ending: "Po konsultacji może się okazać, że CBT nie jest dla Ciebie odpowiednią formą pomocy albo że wolisz rozpocząć pracę z innym terapeutą. Omówimy to otwarcie i zastanowimy się nad możliwymi dalszymi krokami.",
         meta: `Pierwsza konsultacja · ${consultation.minutes} min · Online · ${consultation.pln} zł`,
       },
       cooperation: {
-        title: "Plan terapii powstaje po konsultacjach.",
+        title: "Plan terapii tworzymy wspólnie.",
         intro: [
           "Plan opieramy na zgłaszanych trudnościach, Twoich celach, diagnozie, jeśli została postawiona, oraz indywidualnej konceptualizacji, czyli rozumieniu tego, co podtrzymuje problem.",
           "W przypadku wielu zaburzeń możemy korzystać ze sprawdzonych protokołów CBT. Są mapą pracy, która pomaga dobierać interwencje. Tempo, konkretne ćwiczenia i cele dostosowujemy do Twojej sytuacji.",
@@ -138,7 +257,7 @@
         steps: [
           {
             title: "Ustalamy kierunek",
-            text: "Po konsultacjach porządkujemy rozumienie problemu i wybieramy cele, które mają znaczenie dla Ciebie.",
+            text: "Porządkujemy rozumienie problemu i wybieramy cele, które mają znaczenie dla Ciebie.",
           },
           {
             title: "Próbujemy i obserwujemy",
@@ -190,15 +309,16 @@
           },
           {
             question: "Jak długo trwa terapia?",
-            answer: "Konsultacja i sesja psychoterapii trwają po 50 minut. CBT jest zwykle ograniczona w czasie, ale nie ma jednej właściwej liczby sesji. Długość pracy zależy od trudności, ich historii, celów i przebiegu terapii. Plan omawiamy po konsultacjach i regularnie sprawdzamy postępy.",
+            answer: "Konsultacja i sesja psychoterapii trwają po 50 minut. CBT jest zwykle ograniczona w czasie, ale nie ma jednej właściwej liczby sesji. Długość pracy zależy od trudności, ich historii, celów i przebiegu terapii. Plan omawiamy wspólnie i regularnie sprawdzamy postępy.",
           },
           {
             question: "Czy pomiędzy spotkaniami będę wykonywać ćwiczenia?",
             answer: "Tak. W CBT bardzo ważnym elementem jest praca własna pomiędzy sesjami. Może obejmować obserwowanie określonych sytuacji, zapisywanie myśli albo wypróbowanie nowego sposobu działania. Ustalamy ją wspólnie i dopasowujemy do Twojej sytuacji oraz możliwości.",
           },
           {
+            id: "certification",
             question: "Co oznacza, że jesteś w trakcie certyfikacji?",
-            answer: "Jestem na trzecim roku czteroletniej Szkoły Psychoterapii Poznawczo-Behawioralnej WSB-NLU. Zdałam egzamin po drugim roku szkolenia, a szkoła wystawiła mi zaświadczenie potwierdzające ukończenie co najmniej dwóch lat szkolenia. Pracuję pod superwizją. Dzięki wykształceniu magisterskiemu, ukończeniu co najmniej drugiego roku szkolenia i udziałowi w superwizji spełniam warunki określone dla osoby ubiegającej się o certyfikat psychoterapeuty w art. 5 ust. 3 pkt 4 ustawy z dnia 19 sierpnia 1994 r. o ochronie zdrowia psychicznego, co pozwala mi prowadzić psychoterapię. Zaświadczenie ze szkoły jest dostępne do wglądu.",
+            answer: "Jestem na trzecim roku czteroletniej Szkoły Psychoterapii Poznawczo-Behawioralnej WSB-NLU. Ukończyłam co najmniej dwa lata szkolenia, co zostało potwierdzone zaświadczeniem wydanym przez podmiot prowadzący szkolenie. Uczestniczę również w superwizji psychoterapii.\n\nPosiadam wykształcenie magisterskie i spełniam warunki określone dla osoby ubiegającej się o certyfikat psychoterapeuty, o których mowa w art. 5 ust. 3 pkt 4 ustawy z dnia 19 sierpnia 1994 r. o ochronie zdrowia psychicznego.\n\nPsychoterapię prowadzę w trakcie szkolenia, poddając swoją pracę regularnej superwizji. Dokumenty potwierdzające etap szkolenia oraz udział w superwizji są dostępne do wglądu.",
           },
           {
             question: "Czy rozmowy są poufne?",
@@ -309,18 +429,18 @@
         womenAdhdText: "There is also space to explore the experience of ADHD: managing everyday life, feeling overwhelmed, relationships and the way you see yourself. Together, we can understand what is difficult and look for approaches that fit your circumstances.",
       },
       about: {
+        name: "Sandra Machoń, MSc",
         title: "About me",
         subtitle: "Psychotherapy grounded in a method, shaped around you",
         paragraphs: [
           "Hi, I’m Sandra Machoń. I am a psychotherapist working towards certification. I provide cognitive behavioural psychotherapy for adults online, in Polish and English.",
           "I am in the third year of the four-year programme at the WSB-NLU School of Cognitive Behavioural Psychotherapy. I work under supervision.",
-          "I completed my academic education in London: a BSc in Psychology at the University of Roehampton and a master’s degree (MSc) in Neuroscience at King’s College London. I worked as a research assistant in cognitive neuroscience. My research concerned the relationship between childhood trauma and brain structure, and the role of emotional regulation in addiction.",
+          "I worked as a research assistant in cognitive neuroscience. My research concerned the relationship between childhood trauma and brain structure, and the role of emotional regulation in addiction.",
           "This scientific background is one reason I value CBT: the work draws on a psychological model, available research and an individual understanding of each person’s difficulties. Your experiences, goals and feedback on what helps shape the direction of therapy.",
         ],
         educationTitle: "Education and training",
         education: [
           "Academic education completed in London: a BSc in Psychology at the University of Roehampton and a master’s degree (MSc) in Neuroscience at King’s College London.",
-          "Research experience: work as a research assistant in cognitive neuroscience, including research on the relationship between childhood trauma and brain structure, and the role of emotional regulation in addiction.",
           "Psychotherapy training: year three of the four-year CBT programme at WSB-NLU. The school’s programme is accredited by Polskie Stowarzyszenie Psychologów, Psychoterapeutów i Lekarzy (PSPPiL, the Polish Association of Psychologists, Psychotherapists and Physicians) and the Professional School of Health Sciences (PSoHS). These accreditations apply to the training programme. I am still in training and have not yet obtained a psychotherapy certification.",
           "I have also completed training in affirmative support for LGBT+ people.",
         ],
@@ -335,23 +455,142 @@
           { title: "Shared goals and practical work", text: "Sessions have a structure and goals that we review regularly. Therapy may also include work between sessions: observations, exercises, behavioural experiments or trying a new way of responding. We plan these together and explore what helps." },
           { title: "More ways to respond", text: "CBT is an active therapy. It is not about telling you what to think or persuading you to think positively. We learn to recognise patterns of thinking and behaviour, examine how accurate and helpful they are, and develop different ways to respond." },
         ],
-        modelTitle: "The CBT cognitive model",
-        modelIntro: "Explore how thoughts, emotions, physical sensations and behaviour connect in one situation.",
-        modelHint: "Choose an element to explore the example.",
-        steps: [
-          { label: "Situation", description: "An important conversation is coming up." },
-          { label: "Thought", description: "“I’m bound to embarrass myself.”" },
-          { label: "Emotion", description: "Anxiety." },
-          { label: "Body", description: "Tension, a knot in my stomach." },
-          { label: "Behaviour", description: "I put off the conversation.", alternative: "I have the conversation even though I feel anxious." },
-        ],
-        experimentTitle: "What if we change one part of the pattern?",
-        experimentChoices: ["I put off the conversation", "I have it despite feeling anxious"],
-        experimentOutcomes: [
-          "Avoidance may bring brief relief. But it leaves no opportunity to find out whether my fear is accurate. The conversation is still ahead of me.",
-          "Anxiety and tension may still be there. Having the conversation offers a chance to gather new information: what happened, how did I cope, and what can I learn?",
-        ],
-        experimentNote: "This is a simplified example, not a client’s story. A change in behaviour does not guarantee a change in thoughts or feelings. In therapy, we plan a step like this together, at a pace that fits you.",
+        model: {
+          "label": "Explore an example",
+          "title": "One situation. Different possibilities.",
+          "intro": "The meaning we give a situation connects with how we feel and respond. Choose an example and explore how these elements can influence one another.",
+          "sceneLabel": "Choose a situation",
+          "perspectiveLabel": "Explore an interpretation",
+          "perspectives": [
+            "First thought",
+            "Another perspective"
+          ],
+          "diagramLabel": "ABC model: situation, thoughts and beliefs, and consequences",
+          "hint": "Select an element of the model to explore it.",
+          "consequences": "Consequences",
+          "cycleLabel": "These elements influence one another",
+          "detailLabel": "A closer look",
+          "questionLabel": "A question to reflect on",
+          "updated": "Model updated.",
+          "note": "These are possible responses, not a diagnosis or a prediction of your feelings. A different interpretation may not immediately change emotions or tension. In therapy, we look for a perspective grounded in facts, rather than forcing positive thoughts.",
+          "sourceLabel": "Based on Albert Ellis’s ABC model",
+          "sourceUrl": "https://albertellis.org/rebt-in-the-context-of-modern-psychological-research/",
+          "nodes": [
+            {
+              "id": "situation",
+              "letter": "A",
+              "label": "Situation",
+              "explanation": "We start with what happened, separating observable facts from the meaning we give them.",
+              "question": "What could a camera record, without guessing anyone’s intentions?"
+            },
+            {
+              "id": "belief",
+              "letter": "B",
+              "label": "Thoughts and beliefs",
+              "explanation": "This is how we understand an event: predictions, judgements and beliefs about ourselves, others or the world. A thought can feel certain without being a fact.",
+              "question": "What supports this thought, and what might point to a different explanation?"
+            },
+            {
+              "id": "emotion",
+              "letter": "C",
+              "label": "Emotions",
+              "explanation": "Emotions are part of our response. We begin by recognising and naming them, without needing to judge or immediately change them.",
+              "question": "What would I call this feeling, and how strong is it right now?"
+            },
+            {
+              "id": "behaviour",
+              "letter": "C",
+              "label": "Behaviour",
+              "explanation": "What we do or avoid may bring brief relief, keep a difficulty going or offer new experiences. We explore both the short-term and longer-term effects.",
+              "question": "What does this response give me now, and how does it affect me later?"
+            },
+            {
+              "id": "body",
+              "letter": "C",
+              "label": "Body sensations",
+              "explanation": "Muscle tension, breathing and heartbeat are part of our response too. How we interpret these sensations can, in turn, influence our thoughts and emotions.",
+              "question": "What do I notice in my body, and what meaning am I giving it?"
+            }
+          ],
+          "scenarios": [
+            {
+              "id": "message",
+              "label": "No reply",
+              "situation": "Several hours have passed without a reply to my message.",
+              "views": [
+                {
+                  "belief": "“They’re ignoring me. That means I don’t matter.”",
+                  "emotion": "Anxiety, sadness, a sense of rejection.",
+                  "body": "A knot in my stomach, tense shoulders.",
+                  "behaviour": "I keep checking my phone and rereading the message."
+                },
+                {
+                  "belief": "“I don’t know why they haven’t replied. Their silence doesn’t define my worth.”",
+                  "emotion": "Uncertainty and anxiety may still be there.",
+                  "body": "Tension may remain even when I put my phone down.",
+                  "behaviour": "I return to my activities. If it matters, I follow up later."
+                }
+              ]
+            },
+            {
+              "id": "conversation",
+              "label": "A conversation at work",
+              "situation": "Someone at work asks to speak with me, without saying what about.",
+              "views": [
+                {
+                  "belief": "“Something must be wrong. I must never make mistakes.”",
+                  "emotion": "Anxiety and shame before we have even spoken.",
+                  "body": "A faster heartbeat, tension in my stomach.",
+                  "behaviour": "I put off the conversation and rehearse explanations in my head."
+                },
+                {
+                  "belief": "“I don’t know the topic. Even if I made a mistake, I can look for a solution.”",
+                  "emotion": "Concern and curiosity about what we will discuss.",
+                  "body": "My heart may still be beating faster.",
+                  "behaviour": "I ask what it is about and have the conversation despite uncertainty."
+                }
+              ]
+            },
+            {
+              "id": "overload",
+              "label": "Too much to do",
+              "situation": "At the end of the day, several tasks are still unfinished.",
+              "views": [
+                {
+                  "belief": "“I must do everything. If I can’t keep up, I’m failing.”",
+                  "emotion": "Overwhelm, guilt and frustration.",
+                  "body": "Fatigue, a clenched jaw and a tense neck.",
+                  "behaviour": "I skip a break and try to do several things at once."
+                },
+                {
+                  "belief": "“My time and energy are limited. Not everything has to be done today.”",
+                  "emotion": "Frustration may remain, alongside a greater sense of agency.",
+                  "body": "Fatigue still signals a need for rest.",
+                  "behaviour": "I choose one important task and postpone others or ask for help."
+                }
+              ]
+            },
+            {
+              "id": "rumination",
+              "label": "Replaying a conversation",
+              "situation": "In the evening, I remember something I said at a meeting.",
+              "views": [
+                {
+                  "belief": "“That sounded stupid. I must work out what everyone thought of me.”",
+                  "emotion": "Shame, anxiety and self-reproach.",
+                  "body": "Tension and difficulty settling before sleep.",
+                  "behaviour": "I replay the conversation, looking for certainty I cannot find."
+                },
+                {
+                  "belief": "“I can’t read other people’s minds. One remark doesn’t define me.”",
+                  "emotion": "Embarrassment and uncertainty may not disappear straight away.",
+                  "body": "A sense of arousal may linger for a while.",
+                  "behaviour": "I notice the repeated analysis and redirect my attention to what I’m doing now."
+                }
+              ]
+            }
+          ]
+        },
         partnershipTitle: "You know the terrain. I bring the tools.",
         partnershipText: "Therapy can be like climbing a mountain together. You know your experiences, your history and what matters to you. I bring knowledge of CBT, maps and tools. We agree on the direction and pace together, checking along the way what works and what needs to change.",
         learnMore: "What happens at the first meeting?",
@@ -365,11 +604,11 @@
           "I’ll explain how I work, discuss the practical arrangements and answer your questions. The first consultation is the beginning of understanding the problem together.",
         ],
         highlight: "An initial consultation does not commit you to starting therapy.",
-        ending: "Sometimes further consultation meetings are needed before we can plan ongoing work. If I think another form of support would be more appropriate, we’ll talk about possible next steps.",
+        ending: "After the consultation, you may decide that CBT is not the right form of support for you or that you would prefer to work with another therapist. We can discuss this openly and consider possible next steps.",
         meta: `Initial consultation · ${consultation.minutes} min · Online · PLN ${consultation.pln}`,
       },
       cooperation: {
-        title: "We plan therapy after the consultations.",
+        title: "We plan therapy together.",
         intro: [
           "The plan draws on your difficulties, your goals, any existing diagnosis and an individual formulation, meaning our shared understanding of what keeps the problem going.",
           "For many conditions, we can use established CBT treatment protocols. These provide a map for choosing interventions. We adapt the pace, specific exercises and goals to your circumstances.",
@@ -377,7 +616,7 @@
         steps: [
           {
             title: "Agree on a direction",
-            text: "After the consultations, we bring together our understanding of the problem and choose goals that matter to you.",
+            text: "We bring together our understanding of the problem and choose goals that matter to you.",
           },
           {
             title: "Try things and observe",
@@ -427,15 +666,16 @@
           },
           {
             question: "How long does therapy take?",
-            answer: "The consultation and each psychotherapy session last 50 minutes. CBT is usually time-limited, but there is no set number of sessions. The length depends on the difficulties, their history, your goals and how therapy develops. We discuss a plan after the consultations and review progress regularly.",
+            answer: "The consultation and each psychotherapy session last 50 minutes. CBT is usually time-limited, but there is no set number of sessions. The length depends on the difficulties, their history, your goals and how therapy develops. We discuss the plan together and review progress regularly.",
           },
           {
             question: "Will I be doing exercises between meetings?",
             answer: "Yes. In CBT, work between sessions is a very important part of therapy. It may include noticing particular situations, writing down thoughts or trying a different way of responding. We agree on it together and adapt it to your situation and capacity.",
           },
           {
+            id: "certification",
             question: "What does it mean that you are working towards certification?",
-            answer: "I am in year three of the four-year programme at the WSB-NLU School of Cognitive Behavioural Psychotherapy. I passed the examination after my second year, and the school issued a document confirming that I had completed at least two years of training. I work under supervision. With my master’s degree, completion of at least two years of training and participation in supervision, I meet the requirements for a person working towards psychotherapy certification under Article 5(3)(4) of the Polish Mental Health Protection Act, which permits me to provide psychotherapy. The school document is available to view.",
+            answer: "I am in the third year of the four-year programme at the WSB-NLU School of Cognitive Behavioural Psychotherapy. I have completed at least two years of training, as confirmed by a certificate issued by the training provider. I also participate in psychotherapy supervision.\n\nI hold a master’s degree and meet the requirements for a person applying for a psychotherapist certificate, as referred to in Article 5(3)(4) of the Polish Mental Health Protection Act of 19 August 1994.\n\nI provide psychotherapy while in training and regularly submit my work for supervision. Documents confirming my stage of training and participation in supervision are available for inspection.",
           },
           {
             question: "Are our conversations confidential?",

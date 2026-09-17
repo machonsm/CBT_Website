@@ -9,6 +9,13 @@
     help: "src/assets/images/pic1.png",
     orangePetal: "src/assets/images/petal-orange.png",
     pinkPetal: "src/assets/images/petal-pink.png",
+    helpHeart: "src/assets/images/help/heart-clean.webp",
+    helpCovers: {
+      anxiety: "anxiety-palette-v4.webp",
+      stress: "stress-palette-v4.webp",
+      mood: "mood-palette-v4.webp",
+      overthinking: "overthinking-paper-v5.webp",
+    },
   };
 
   const translations = {
@@ -995,16 +1002,22 @@
 
   function renderAudience() {
     const help = getCopy().help;
+    const waveText = Array.from(help.explore).map((character, index) =>
+      character === " "
+        ? `<span class="flow-help-wave-space" aria-hidden="true">&nbsp;</span>`
+        : `<span class="flow-help-wave-letter" style="--wave-index:${index}" aria-hidden="true">${escapeHtml(character)}</span>`,
+    ).join("");
     return `
-      <section id="help" class="section-about about-water flow-help" aria-labelledby="help-title" data-animate-section>
-        <div class="about-water-intro flow-help-surface" data-water-surface>
-          <canvas class="about-water-canvas" data-water-canvas aria-hidden="true"></canvas>
+      <section id="help" class="section-about about-water flow-help" aria-labelledby="help-title" data-animate-section data-water-surface>
+        <canvas class="about-water-canvas" data-water-canvas aria-hidden="true"></canvas>
+        <canvas class="about-water-canvas about-water-drops" data-water-drops aria-hidden="true"></canvas>
+        <div class="about-water-intro flow-help-surface">
           <div class="section-shell flow-help-content">
             <header class="editorial-head">
               <span class="section-label">${escapeHtml(getCopy().nav.help)}</span>
               <h2 id="help-title" class="section-title">${escapeHtml(help.title)}</h2>
               <p class="section-lead">${escapeHtml(help.subtitle)}</p>
-              <a class="flow-help-explore" href="#help-areas"><span>${escapeHtml(help.explore)}</span><span aria-hidden="true">↓</span></a>
+              <a class="flow-help-explore" href="#help-areas" aria-label="${escapeHtml(help.explore)}"><span class="flow-help-wave">${waveText}</span><span class="flow-help-wave-arrow" aria-hidden="true">↓</span></a>
             </header>
           </div>
         </div>
@@ -1015,13 +1028,14 @@
                   <h3 id="help-experience-${item.id}" class="help-card-experience">${escapeHtml(item.experience)}</h3>
                   <div class="help-card-body">
                     <div class="help-card-art" aria-hidden="true">
-                      <span class="help-card-orbit"></span>
-                      ${index === 0 || index === 2
-                        ? `<span class="help-card-symbol help-card-petal"></span>`
-                        : `<img class="help-card-symbol" src="${index === 1 ? assets.logo : assets.heart}" alt="" loading="lazy" width="2363" height="2363">`}
+                      <img class="help-card-cover" src="src/assets/images/help/${assets.helpCovers[item.id]}" alt="" loading="lazy" decoding="async" width="1254" height="1254">
                     </div>
                     <div id="help-detail-${item.id}" class="help-card-reveal">
-                      <svg class="help-card-thread" viewBox="0 0 180 58" fill="none" aria-hidden="true"><path pathLength="1" d="M4 5C24 5 28 48 61 43C86 39 85 13 68 16C47 20 69 56 110 43C134 35 151 27 171 36M159 23L173 36L156 42"/></svg>
+                      <div class="help-card-inside-art" aria-hidden="true">
+                        ${index === 0 || index === 2
+                          ? `<span class="help-card-symbol help-card-petal"></span>`
+                          : `<img class="help-card-symbol" src="${index === 1 ? assets.logo : assets.helpHeart}" alt="" loading="lazy" decoding="async" width="1024" height="1024">`}
+                      </div>
                       <p class="help-card-eyebrow">${escapeHtml(help.workOn)}</p>
                       <h4>${escapeHtml(item.title)}</h4>
                       <p class="help-card-description">${escapeHtml(item.description)}</p>
@@ -1047,19 +1061,23 @@
 
   function renderAbout() {
     const about = getCopy().about;
+    const certification = getCopy().faq.items.find(item => item.id === "certification");
     return `
       <section id="about" class="section-about about-water" aria-labelledby="about-title" data-about-transition data-animate-section>
+        <span class="about-profile-petal" aria-hidden="true"></span>
+        <span class="about-profile-shape" aria-hidden="true"></span>
         <div id="about-profile" class="about-profile-shell">
           <div class="about-profile-grid">
             <figure class="about-portrait">
               <div class="about-portrait-frame"><img src="${assets.portrait}" alt="Sandra Machoń" loading="lazy" width="2072" height="2070"></div>
-              <figcaption><span class="about-portrait-name">Sandra Machoń</span></figcaption>
+              <figcaption><span class="about-portrait-name">${escapeHtml(about.name)}</span></figcaption>
             </figure>
             <div class="about-biography">
               <h2 id="about-title" class="about-water-label about-profile-label">${escapeHtml(about.title)}</h2>
               <h3>${escapeHtml(about.subtitle)}</h3>
               <div class="about-biography-text">${about.paragraphs.map(text => `<p>${escapeHtml(text)}</p>`).join("")}</div>
               <details id="about-education" class="flow-education"><summary>${escapeHtml(about.educationTitle)}</summary><div>${about.education.map(text => `<p>${escapeHtml(text)}</p>`).join("")}<p><a class="flow-school-source" href="${escapeHtml(about.schoolLink)}">${escapeHtml(about.schoolLinkLabel)} <span aria-hidden="true">↗</span></a></p></div></details>
+              ${certification ? `<details id="about-certification" class="flow-education flow-certification"><summary>${escapeHtml(certification.question)}</summary><div>${certification.answer.split("\n\n").map(text => `<p>${escapeHtml(text)}</p>`).join("")}</div></details>` : ""}
             </div>
           </div>
         </div>
@@ -1078,24 +1096,7 @@
               <p class="section-lead">${escapeHtml(therapy.intro)}</p>
               <div class="flow-cbt-principles">${therapy.principles.map(item => `<div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.text)}</p></div>`).join("")}</div>
             </div>
-            <div class="therapy-model-panel" data-cbt-model data-active-step="0" data-cbt-scenario="0" aria-labelledby="cbt-model-title">
-              <h3 id="cbt-model-title" class="model-caption">${escapeHtml(therapy.modelTitle)} <span aria-hidden="true">↗</span></h3>
-              <p class="cbt-model-intro">${escapeHtml(therapy.modelIntro)}</p>
-              <div class="model-illustration" data-parallax="20"><img src="${assets.help}" alt="" loading="lazy" width="2363" height="2363"></div>
-              <div class="cbt-loop" role="group" aria-labelledby="cbt-model-title" aria-describedby="cbt-hint">
-                ${therapy.steps.map((step, index) => `<button type="button" data-cbt-step="${index}" data-cbt-description="${escapeHtml(step.description)}" data-cbt-alternative="${escapeHtml(step.alternative || step.description)}" aria-pressed="${index === 0}" aria-controls="cbt-description">${escapeHtml(step.label)}</button>`).join("")}
-              </div>
-              <p id="cbt-description" class="cbt-description" aria-live="polite" aria-atomic="true">${escapeHtml(therapy.steps[0].description)}</p>
-              <p id="cbt-hint" class="model-hint">${escapeHtml(therapy.modelHint)}</p>
-              <fieldset class="cbt-experiment"><legend>${escapeHtml(therapy.experimentTitle)}</legend>
-                <div class="cbt-choices">${therapy.experimentChoices.map((choice, index) => `<button type="button" data-cbt-choice="${index}" aria-pressed="${index === 0}" aria-controls="cbt-outcome cbt-description"><span aria-hidden="true">${index === 0 ? "↻" : "↗"}</span>${escapeHtml(choice)}</button>`).join("")}</div>
-              </fieldset>
-              <div class="cbt-result">
-                <svg class="cbt-route" viewBox="0 0 160 65" fill="none" aria-hidden="true"><path class="cbt-route-loop" d="M107 24C104 8 71 9 63 25C53 47 91 59 106 43C117 30 97 13 74 20"/><path class="cbt-route-forward" pathLength="1" d="M33 40C57 58 81 52 98 33C109 20 123 17 143 19M133 9L145 19L133 29"/></svg>
-                <p id="cbt-outcome" aria-live="polite" aria-atomic="true" data-cbt-outcome="${escapeHtml(therapy.experimentOutcomes[0])}" data-cbt-outcome-alternative="${escapeHtml(therapy.experimentOutcomes[1])}">${escapeHtml(therapy.experimentOutcomes[0])}</p>
-              </div>
-              <p class="cbt-example-note">${escapeHtml(therapy.experimentNote)}</p>
-            </div>
+            ${window.CbtModel.render(therapy.model)}
           </div>
           <aside class="flow-partnership" aria-labelledby="partnership-title"><h3 id="partnership-title">${escapeHtml(therapy.partnershipTitle)}</h3><div><p>${escapeHtml(therapy.partnershipText)}</p><a class="link-arrow" href="#first-consultation">${escapeHtml(therapy.learnMore)} <span aria-hidden="true">→</span></a></div></aside>
         </div>
@@ -1147,7 +1148,7 @@
 
   function renderFaq() {
     const copy = getCopy().faq;
-    const question = (item, index) => `<details id="faq-${index + 1}" class="flow-question"><summary>${escapeHtml(item.question)}</summary><div><p>${escapeHtml(item.answer)}</p></div></details>`;
+    const question = (item, index) => `<details id="faq-${index + 1}" class="flow-question"><summary>${escapeHtml(item.question)}</summary><div>${item.answer.split("\n\n").map(text => `<p>${escapeHtml(text)}</p>`).join("")}</div></details>`;
     return `<section id="faq" class="page-section flow-section flow-faq" aria-labelledby="faq-title">
       <div class="section-shell"><span class="section-label">${escapeHtml(copy.label)}</span>
         <h2 id="faq-title" class="section-title">${escapeHtml(copy.title)}</h2>
@@ -1302,9 +1303,7 @@
     const scrollPosition = { top: window.scrollY, left: window.scrollX };
     const openDetails = Array.from(site.querySelectorAll("details[id][open]"), (element) => element.id);
     const pinnedHelp = Array.from(site.querySelectorAll("[data-help-card][data-pinned='true']"), element => element.dataset.helpCard);
-    const cbtState = site.querySelector("[data-cbt-model]")?.dataset;
-    const cbtStep = cbtState?.activeStep || "0";
-    const cbtScenario = cbtState?.cbtScenario || "0";
+    const cbtState = window.CbtModel?.getState();
     const railPosition = document.querySelector("[data-blog-rail]")?.scrollLeft || 0;
     const activeElement = document.activeElement;
     const focusSelector = getFocusSelector(activeElement);
@@ -1318,6 +1317,7 @@
     window.AboutTransition?.cleanup();
     window.FooterGarden?.cleanup();
     window.HelpDiscovery?.cleanup();
+    window.CbtModel?.cleanup();
     window.BookingFlow?.cleanup();
     document.documentElement.lang = state.lang === "PL" ? "pl" : "en";
     document.querySelector('meta[name="description"]')?.setAttribute("content", getCopy().footer.description);
@@ -1329,11 +1329,13 @@
         ${renderHeader()}
         <main id="top" class="content-flow">
           ${renderHero()}
-          <div class="about-journey" data-about-journey>
-            ${renderAudience()}
-          </div>
-          <div class="about-journey about-profile-panel" data-about-journey>
-            ${renderAbout()}
+          <div class="about-sections">
+            <div class="about-journey" data-about-journey>
+              ${renderAudience()}
+            </div>
+            <div class="about-journey about-profile-panel" data-about-journey>
+              ${renderAbout()}
+            </div>
           </div>
           ${renderTherapy()}
           ${renderConsultation()}
@@ -1347,11 +1349,6 @@
       </div>
     `;
 
-    const cbtPanel = site.querySelector("[data-cbt-model]");
-    if (cbtPanel) {
-      cbtPanel.dataset.activeStep = cbtStep;
-      cbtPanel.dataset.cbtScenario = cbtScenario;
-    }
     openDetails.forEach((id) => {
       const element = document.getElementById(id);
       if (element?.tagName === "DETAILS") element.open = true;
@@ -1364,6 +1361,7 @@
     setupRevealAnimations();
     initBlogScroller();
     window.SiteMotion?.mount();
+    window.CbtModel?.mount(getCopy().therapy.model, cbtState);
     window.AboutTransition?.mount();
     window.AboutWater?.mount();
     window.FooterGarden?.mount();

@@ -79,8 +79,8 @@
         const colourProgress = smoothstep(0, 1, progress);
         setProperty(surface, "--about-colour-progress", colourProgress.toFixed(4));
         const profile = surface.journey.classList.contains("about-profile-panel");
-        const from = profile ? [0, 133, 222] : [0, 75, 125];
-        const to = profile ? [115, 202, 240] : [0, 103, 172];
+        const from = profile ? [243, 244, 239] : [33, 30, 163];
+        const to = profile ? [223, 234, 240] : [33, 30, 163];
         const deep = from.map((channel, index) =>
           Math.round(channel + (to[index] - channel) * progress));
         setProperty(surface, "--about-gradient-deep", `rgb(${deep.join(", ")})`);

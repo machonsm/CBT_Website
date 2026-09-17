@@ -294,35 +294,6 @@
     });
   }
 
-  function setupCbtSteps() {
-    const panel = document.querySelector("[data-cbt-model]");
-    if (!panel) return;
-    const buttons = Array.from(panel.querySelectorAll("[data-cbt-step]"));
-    const choices = Array.from(panel.querySelectorAll("[data-cbt-choice]"));
-    const description = panel.querySelector("#cbt-description");
-    const outcome = panel.querySelector("#cbt-outcome");
-    if (!buttons.length) return;
-
-    const activate = (button) => {
-      buttons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
-      const text = panel.dataset.cbtScenario === "1" ? button.dataset.cbtAlternative : button.dataset.cbtDescription;
-      if (description && text) description.textContent = `${button.textContent}: ${text}`;
-      panel.dataset.activeStep = button.dataset.cbtStep;
-    };
-    const choose = (choice, fromInteraction = false) => {
-      panel.dataset.cbtScenario = choice.dataset.cbtChoice;
-      choices.forEach(item => item.setAttribute("aria-pressed", String(item === choice)));
-      if (outcome) outcome.textContent = panel.dataset.cbtScenario === "1"
-        ? outcome.dataset.cbtOutcomeAlternative : outcome.dataset.cbtOutcome;
-      // Only behaviour changes. The thought, feeling and body response stay the
-      // same: this illustration does not promise automatic symptom relief.
-      const step = fromInteraction ? buttons.length - 1 : Number(panel.dataset.activeStep);
-      activate(buttons[step] || buttons[0]);
-    };
-    buttons.forEach((button) => on(button, "click", () => activate(button)));
-    choices.forEach((button) => on(button, "click", () => choose(button, true)));
-    choose(choices.find(button => button.dataset.cbtChoice === panel.dataset.cbtScenario) || choices[0]);
-  }
 
   function setupBlogRails() {
     document.querySelectorAll("[data-blog-rail]").forEach((rail) => {
@@ -450,7 +421,6 @@
     });
     on(document, "load", () => { geometryDirty = true; update(); }, { capture: true });
     setupPointerEffects();
-    setupCbtSteps();
     setupBlogRails();
     if ("ResizeObserver" in window) {
       resizeObserver = new ResizeObserver(() => {

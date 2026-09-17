@@ -1,24 +1,29 @@
-/* A quiet water surface gradually lightens into the portrait section. */
+/* Shared blue surroundings connect the water and the lighter portrait panel. */
+.about-sections {
+  padding-bottom: clamp(.5rem, 1vw, 1rem);
+  background: var(--palette-deep, #211ea3);
+}
 .about-journey {
   --about-colour-progress: .9145;
   /* Darker shades of the illustration blue keep paper text readable. */
-  --about-sky: #006fba;
+  --about-sky: #164ca9;
   --about-sky-start: var(--about-sky);
-  --about-gradient-middle: #0066aa;
+  --about-gradient-middle: #2136a5;
   --about-ink: var(--palette-deep, #211ea3);
   --about-gradient-shift: 18%;
-  --about-gradient-deep: #0062a4;
+  --about-gradient-deep: var(--palette-deep, #211ea3);
   position: relative;
   isolation: isolate;
   background: var(--palette-deep, #211ea3);
 }
 
 .about-profile-panel {
-  --about-sky: #69c2ef;
-  --about-gradient-middle: #45afe8;
-  --about-gradient-deep: #0085de;
-  background: #69c2ef;
-  margin: clamp(.5rem, 1vw, 1rem) clamp(.375rem, .75vw, .75rem) clamp(2rem, 4vw, 4rem);
+  --about-sky: var(--palette-paper, #f3f4ef);
+  --about-sky-start: var(--about-sky);
+  --about-gradient-middle: #edf1ee;
+  --about-gradient-deep: #dfeaf0;
+  background: var(--palette-paper, #f3f4ef);
+  margin: 0 clamp(.375rem, .75vw, .75rem);
   border-radius: clamp(1.5rem, 2.5vw, 2.25rem);
   overflow: clip;
 }
@@ -82,13 +87,27 @@
 .about-water-canvas {
   position: absolute;
   z-index: -1;
-  inset: 0;
+  top: 0;
+  left: 0;
   display: block;
   width: 100%;
-  height: 100%;
+  height: min(100%, 100svh);
   pointer-events: none;
-  mask-image: linear-gradient(to bottom, transparent, black 140px, black calc(100% - 140px), transparent);
-  -webkit-mask-image: linear-gradient(to bottom, transparent, black 140px, black calc(100% - 140px), transparent);
+}
+
+.flow-help { isolation: isolate; }
+.about-water-drops { z-index: 2; }
+
+.about-profile-petal {
+  position: absolute;
+  top: -5rem;
+  right: -7rem;
+  width: clamp(16rem, 28vw, 27rem);
+  aspect-ratio: 1;
+  background: var(--palette-pink);
+  mask: url("../src/assets/images/petal-pink.png") center / contain no-repeat;
+  rotate: -18deg;
+  pointer-events: none;
 }
 
 .about-water-copy {
@@ -154,6 +173,7 @@
 }
 
 .about-profile-shell {
+  position: relative;
   scroll-margin-top: 7rem;
   width: min(100% - 8rem, 72rem);
   margin-inline: auto;
@@ -177,8 +197,21 @@
 
 .about-portrait-frame {
   position: relative;
+  isolation: isolate;
   width: min(100%, 23rem);
   aspect-ratio: 1;
+}
+
+.about-profile-shape {
+  position: absolute;
+  left: -8rem;
+  bottom: -9rem;
+  width: clamp(18rem, 26vw, 26rem);
+  aspect-ratio: 1;
+  background: var(--palette-blue);
+  mask: url("../src/assets/images/blue-shape-hero.png") center / contain no-repeat;
+  rotate: -18deg;
+  pointer-events: none;
 }
 
 .about-portrait-frame::before,
@@ -273,6 +306,8 @@
   .about-profile-shell { width: calc(100% - 3rem); padding: 3rem 0 4.5rem; }
   .about-profile-grid { grid-template-columns: 1fr; gap: 3.5rem; }
   .about-portrait-frame { width: min(74vw, 18rem); }
+  .about-profile-petal { top: -5rem; right: -7rem; width: 18rem; }
+  .about-profile-shape { left: -5rem; bottom: -7rem; width: 13rem; }
   .about-portrait { gap: 2.25rem; }
   .about-biography h3 { max-width: 15ch; font-size: 2.55rem; margin-bottom: 1.5rem; }
   .about-biography-text p { font-size: .9rem; line-height: 1.75; }
