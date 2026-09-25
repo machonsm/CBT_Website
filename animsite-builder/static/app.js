@@ -279,7 +279,7 @@
         submitButton: "Przygotuj wiadomość",
         successTitle: "Prawie gotowe!",
         successText:
-          "Otworzyłam szkic wiadomości w Twoim programie pocztowym. Wyślij ją, aby potwierdzić zgłoszenie. Jeśli okno poczty się nie otworzyło, napisz bezpośrednio na machonsm@gmail.com.",
+          "Otworzyłam szkic wiadomości w Twoim programie pocztowym. Wyślij ją, aby potwierdzić zgłoszenie. Jeśli okno poczty się nie otworzyło, napisz bezpośrednio na sandramachon.cbt@gmail.com.",
         closeButton: "Zamknij okno",
       },
       footer: {
@@ -547,7 +547,7 @@
         submitButton: "Prepare Email",
         successTitle: "Almost ready!",
         successText:
-          "I opened an email draft in your mail app. Send it to confirm your request. If your mail window did not open, contact me directly at machonsm@gmail.com.",
+          "I opened an email draft in your mail app. Send it to confirm your request. If your mail window did not open, contact me directly at sandramachon.cbt@gmail.com.",
         closeButton: "Close window",
       },
       footer: {
@@ -564,10 +564,8 @@
   };
 
   const state = {
-    lang: localStorage.getItem("sandra-cbt-lang") === "EN" ? "EN" : "PL",
+    lang: document.documentElement.lang === "en" ? "EN" : "PL",
     mobileOpen: false,
-    bookingOpen: false,
-    bookingSubmitted: false,
   };
 
   const blogArticleCards = {
@@ -738,7 +736,7 @@
   };
 
   const site = document.getElementById("site");
-  const sectionIds = ["help", "about", "therapy", "first-consultation", "cooperation", "pricing", "faq", "contact"];
+  const sectionIds = ["help", "about", "therapy", "first-consultation", "cooperation", "pricing", "contact", "faq"];
   let initialHashHandled = false;
   let reducedMotionQuery = null;
   let scrollEffectsFrame = null;
@@ -759,6 +757,12 @@
     return { ...translations[state.lang], ...window.SiteContent[state.lang] };
   }
 
+  const bookingUrl = "https://calendar.app.google/FZS91UHahewqZt8Q6";
+  function renderBookingCta(label, className = "btn btn-primary", attributes = "") {
+    const arrow = className.includes("landing-booking") ? '<span aria-hidden="true">↗</span>' : "";
+    return `<a class="${className}" href="${escapeHtml(bookingUrl)}" target="_blank" rel="noopener noreferrer" ${attributes}>${escapeHtml(label)}${arrow}</a>`;
+  }
+
   function getBlogPosts() {
     return blogArticleCards[state.lang];
   }
@@ -770,6 +774,7 @@
       { href: "#about", id: "about", label: nav.about },
       { href: "#therapy", id: "therapy", label: nav.therapy },
       { href: "#pricing", id: "pricing", label: nav.pricing },
+      { href: "#contact", id: "contact", label: nav.contact },
       { href: "#faq", id: "faq", label: nav.faq },
     ];
   }
@@ -797,22 +802,12 @@
   }
 
   function renderLanguageToggle(compact = false) {
-    if (compact) {
-      return `
-        <button class="lang-toggle" type="button" data-lang-toggle aria-label="${state.lang === "PL" ? "Zmień język na angielski" : "Switch language to Polish"}">
-          ${state.lang === "PL" ? "PL / EN" : "EN / PL"}
-        </button>
-      `;
-    }
-
-    const plClass = state.lang === "PL" ? "is-current" : "is-muted";
-    const enClass = state.lang === "EN" ? "is-current" : "is-muted";
     return `
-      <button class="lang-toggle" type="button" data-lang-toggle aria-label="${state.lang === "PL" ? "Zmień język na angielski" : "Switch language to Polish"}">
-        <span class="${plClass}">PL</span>
-        <span class="is-muted">/</span>
-        <span class="${enClass}">EN</span>
-      </button>
+      <nav class="language-switch${compact ? " language-switch--compact" : ""}" data-language="${state.lang.toLowerCase()}" aria-label="${state.lang === "PL" ? "Wybór języka" : "Choose language"}">
+        <span class="language-switch-highlight" aria-hidden="true"></span>
+        <a href="./" hreflang="pl" lang="pl" data-language-link="pl" aria-label="Polski" ${state.lang === "PL" ? 'aria-current="page"' : ""}>PL</a>
+        <a href="en.html" hreflang="en" lang="en" data-language-link="en" aria-label="English" ${state.lang === "EN" ? 'aria-current="page"' : ""}>EN</a>
+      </nav>
     `;
   }
 
@@ -842,9 +837,7 @@
 
           <div class="nav-actions">
             ${renderLanguageToggle()}
-            <button class="btn btn-primary" type="button" data-open-booking data-magnetic>
-              ${escapeHtml(nav.bookButton)}
-            </button>
+            ${renderBookingCta(nav.bookButton, "btn btn-primary", "data-magnetic")}
           </div>
 
           <div class="mobile-actions">
@@ -855,10 +848,6 @@
           </div>
         </div>
       </header>
-      <button class="motion-toggle" type="button" data-motion-toggle aria-pressed="false" aria-label="${state.lang === "PL" ? "Wstrzymaj animacje" : "Pause animations"}">
-        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M5 3v10M11 3v10" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-        <span data-motion-label>${state.lang === "PL" ? "Wstrzymaj animacje" : "Pause animations"}</span>
-      </button>
       ${state.mobileOpen ? renderMobileMenu() : ""}
     `;
   }
@@ -876,9 +865,7 @@
         </div>
         <nav aria-label="Mobile navigation links">
           ${renderNavList()}
-          <button class="btn btn-primary" type="button" data-open-booking>
-            ${escapeHtml(nav.bookButton)}
-          </button>
+          ${renderBookingCta(nav.bookButton)}
         </nav>
         <div class="mobile-menu-foot">Terapia CBT Online · Sandra Machoń</div>
       </div>
@@ -912,10 +899,7 @@
             <div class="landing-intro">
               <p class="hero-description">${escapeHtml(hero.description)}</p>
               <div class="landing-actions">
-                <button class="btn btn-primary landing-booking" type="button" data-open-booking>
-                  ${escapeHtml(hero.cta)}
-                  <span aria-hidden="true">↗</span>
-                </button>
+                ${renderBookingCta(hero.cta, "btn btn-primary landing-booking")}
                 <a class="landing-scroll-cue" href="#help">
                   <span>${escapeHtml(hero.scroll)}</span>
                   <span class="scroll-cue-icon" aria-hidden="true">↓</span>
@@ -1068,10 +1052,18 @@
         <span class="about-profile-shape" aria-hidden="true"></span>
         <div id="about-profile" class="about-profile-shell">
           <div class="about-profile-grid">
-            <figure class="about-portrait">
-              <div class="about-portrait-frame"><img src="${assets.portrait}" alt="Sandra Machoń" loading="lazy" width="2072" height="2070"></div>
-              <figcaption><span class="about-portrait-name">${escapeHtml(about.name)}</span></figcaption>
-            </figure>
+            <div class="about-portrait-column">
+              <figure class="about-portrait">
+                <div class="about-portrait-frame"><img src="${assets.portrait}" alt="Sandra Machoń" loading="lazy" width="2072" height="2070"></div>
+                <figcaption><span class="about-portrait-name">${escapeHtml(about.name)}</span></figcaption>
+              </figure>
+              <aside class="about-contact" aria-label="${escapeHtml(about.contactTitle)}">
+                <strong>${escapeHtml(about.contactTitle)}</strong>
+                <a href="mailto:sandramachon.cbt@gmail.com"><span class="about-contact-label">${escapeHtml(about.emailLabel)}</span><span class="about-contact-value">sandramachon.cbt@gmail.com</span></a>
+                <a href="tel:+48720427426"><span class="about-contact-label">${escapeHtml(about.phoneLabel)}</span><span class="about-contact-value">(+48) 720 427 426</span></a>
+                ${renderBookingCta(getCopy().nav.bookButton)}
+              </aside>
+            </div>
             <div class="about-biography">
               <h2 id="about-title" class="about-water-label about-profile-label">${escapeHtml(about.title)}</h2>
               <h3>${escapeHtml(about.subtitle)}</h3>
@@ -1095,6 +1087,7 @@
               <h2 id="therapy-title" class="section-title">${escapeHtml(therapy.title)}</h2>
               <p class="section-lead">${escapeHtml(therapy.intro)}</p>
               <div class="flow-cbt-principles">${therapy.principles.map(item => `<div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.text)}</p></div>`).join("")}</div>
+              <a class="flow-legal-link" href="zasady-wspolpracy/" lang="pl">${escapeHtml(getCopy().footer.termsLabel)}${state.lang === "EN" ? " (PL)" : ""} <span aria-hidden="true">↗</span></a>
             </div>
             ${window.CbtModel.render(therapy.model)}
           </div>
@@ -1117,7 +1110,8 @@
             <p class="flow-highlight">${escapeHtml(copy.highlight)}</p>
             <p>${escapeHtml(copy.ending)}</p>
             <p class="flow-meta">${escapeHtml(copy.meta)}</p>
-            <button class="btn btn-primary" type="button" data-open-booking>${escapeHtml(getCopy().nav.bookButton)}</button>
+            ${renderBookingCta(getCopy().nav.bookButton)}
+            <a class="flow-legal-link" href="zasady-wspolpracy/" lang="pl">${escapeHtml(getCopy().footer.termsLabel)}${state.lang === "EN" ? " (PL)" : ""} <span aria-hidden="true">↗</span></a>
           </aside>
         </div>
       </section>`;
@@ -1142,7 +1136,8 @@
         <dl class="flow-price-list">${copy.items.map(item => `<div class="flow-price-row"><dt>${escapeHtml(item.title)}</dt><dd><strong>${escapeHtml(item.price)}</strong></dd></div>`).join("")}</dl>
         <p class="flow-price-languages">${escapeHtml(copy.languages)}</p>
         <p class="flow-pricing-note">${escapeHtml(copy.note)}</p>
-        <button class="btn btn-primary" type="button" data-open-booking>${escapeHtml(copy.cta)}</button>
+        ${renderBookingCta(copy.cta)}
+        <a class="flow-legal-link" href="zasady-wspolpracy/" lang="pl">${escapeHtml(getCopy().footer.termsLabel)}${state.lang === "EN" ? " (PL)" : ""} <span aria-hidden="true">↗</span></a>
       </div></section>`;
   }
 
@@ -1168,10 +1163,12 @@
           <h2 id="contact-title" class="section-title">${escapeHtml(cta.title)}</h2><p>${escapeHtml(cta.subtitle)}</p>
         </div>
         <div class="contact-actions">
-          <button class="btn btn-primary" type="button" data-open-booking>${escapeHtml(cta.button)}</button>
-          <p>${escapeHtml(cta.emailLabel)}</p><a class="contact-email" href="mailto:machonsm@gmail.com">machonsm@gmail.com</a>
+          ${renderBookingCta(cta.button)}
+          <p>${escapeHtml(cta.emailLabel)}</p><a class="contact-email" href="mailto:sandramachon.cbt@gmail.com">sandramachon.cbt@gmail.com</a>
+          <p>${escapeHtml(cta.phoneLabel)}</p><a class="contact-email contact-phone" href="tel:+48720427426">(+48) 720 427 426</a>
           <p>${escapeHtml(cta.emailNote)}</p>
           <a href="#urgent-help">${escapeHtml(getCopy().footer.urgentTitle)}</a>
+          <a class="flow-legal-link" href="zasady-wspolpracy/" lang="pl">${escapeHtml(getCopy().footer.termsLabel)}${state.lang === "EN" ? " (PL)" : ""} <span aria-hidden="true">↗</span></a>
         </div>
       </div></div></div></section>`;
   }
@@ -1272,23 +1269,14 @@
       <div class="footer-grid">
         <div class="footer-brand"><div class="footer-brand-row"><img src="${assets.logo}" alt=""><span>Terapia CBT Online<br>Sandra Machoń</span></div><p>${escapeHtml(footer.description)}</p></div>
         <div class="footer-col"><h4>${escapeHtml(footer.linksTitle)}</h4><ul class="footer-link-list">${navLinks().map(link => `<li><a href="${link.href}">${escapeHtml(link.label)}</a></li>`).join("")}</ul></div>
-        <div class="footer-col"><h4>${escapeHtml(footer.contactTitle)}</h4><p><a class="email-link" href="mailto:machonsm@gmail.com">machonsm@gmail.com</a></p><a href="#first-consultation">${escapeHtml(getCopy().consultation.label)}</a></div>
+        <div class="footer-col"><h4>${escapeHtml(footer.contactTitle)}</h4><p><a class="email-link" href="mailto:sandramachon.cbt@gmail.com">sandramachon.cbt@gmail.com</a></p><p><a class="email-link" href="tel:+48720427426">(+48) 720 427 426</a></p><a href="#first-consultation">${escapeHtml(getCopy().consultation.label)}</a></div>
         <div class="footer-col">${renderLanguageToggle()}</div>
       </div>
       <aside id="urgent-help" class="flow-urgent" aria-labelledby="urgent-title"><h3 id="urgent-title">${escapeHtml(footer.urgentTitle)}</h3><p>${escapeHtml(footer.urgentText)}</p>
         <p><a href="tel:112">112</a> · <a href="tel:800702222">800 70 2222</a> · <a href="https://centrumwsparcia.pl/">Centrum Wsparcia</a></p>
       </aside>
-      <div class="footer-bottom"><div>© ${new Date().getFullYear()} Sandra Machoń. ${escapeHtml(footer.rights)}</div><a href="#pricing">${state.lang === "PL" ? "Organizacja spotkań i ceny" : "Session arrangements and fees"}</a></div>
+      <div class="footer-bottom"><div>© ${new Date().getFullYear()} Sandra Machoń. ${escapeHtml(footer.rights)}</div><div class="footer-bottom-links"><a href="#pricing">${state.lang === "PL" ? "Organizacja spotkań i ceny" : "Session arrangements and fees"}</a><a href="zasady-wspolpracy/" lang="pl">${escapeHtml(footer.termsLabel)}${state.lang === "EN" ? " (PL)" : ""}</a><a href="polityka-prywatnosci/" lang="pl">${escapeHtml(footer.privacyLabel)}${state.lang === "EN" ? " (PL)" : ""}</a></div></div>
     </div>${renderFooterGarden()}</footer>`;
-  }
-
-  function renderBookingModal() {
-    if (!state.bookingOpen) return "";
-    return `<div class="modal-backdrop" data-modal-backdrop="booking">
-      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="booking-title">
-        <button class="modal-close" type="button" data-close-booking aria-label="${state.lang === "PL" ? "Zamknij" : "Close"}">×</button>
-        ${window.BookingFlow.render(state.lang)}
-      </div></div>`;
   }
 
   let hasRendered = false;
@@ -1307,7 +1295,7 @@
     const railPosition = document.querySelector("[data-blog-rail]")?.scrollLeft || 0;
     const activeElement = document.activeElement;
     const focusSelector = getFocusSelector(activeElement);
-    const nextOverlay = state.bookingOpen ? "booking" : state.mobileOpen ? "mobile" : null;
+    const nextOverlay = state.mobileOpen ? "mobile" : null;
     const previousOverlay = renderedOverlay;
     if (nextOverlay && !previousOverlay) overlayReturnFocus = focusSelector;
 
@@ -1318,36 +1306,11 @@
     window.FooterGarden?.cleanup();
     window.HelpDiscovery?.cleanup();
     window.CbtModel?.cleanup();
-    window.BookingFlow?.cleanup();
     document.documentElement.lang = state.lang === "PL" ? "pl" : "en";
-    document.querySelector('meta[name="description"]')?.setAttribute("content", getCopy().footer.description);
     document.body.classList.toggle("modal-open", Boolean(nextOverlay));
     document.body.classList.toggle("site-has-rendered", hasRendered);
 
-    site.innerHTML = `
-      <div class="page">
-        ${renderHeader()}
-        <main id="top" class="content-flow">
-          ${renderHero()}
-          <div class="about-sections">
-            <div class="about-journey" data-about-journey>
-              ${renderAudience()}
-            </div>
-            <div class="about-journey about-profile-panel" data-about-journey>
-              ${renderAbout()}
-            </div>
-          </div>
-          ${renderTherapy()}
-          ${renderConsultation()}
-          ${renderCooperation()}
-          ${renderPricing()}
-          ${renderFaq()}
-          ${renderCta()}
-        </main>
-        ${renderFooter()}
-        ${renderBookingModal()}
-      </div>
-    `;
+    site.innerHTML = renderPage();
 
     openDetails.forEach((id) => {
       const element = document.getElementById(id);
@@ -1373,6 +1336,33 @@
     handleInitialHashScroll();
   }
 
+  function renderPage() {
+    return `
+      <div class="page">
+        ${renderHeader()}
+        <main id="top" class="content-flow">
+          ${renderHero()}
+          <div class="about-sections">
+            <div class="about-journey" data-about-journey>
+              ${renderAudience()}
+            </div>
+            <div class="about-journey about-profile-panel" data-about-journey>
+              ${renderAbout()}
+            </div>
+          </div>
+          ${renderTherapy()}
+          ${renderConsultation()}
+          ${renderCooperation()}
+          ${renderPricing()}
+          ${renderCta()}
+          ${renderFaq()}
+        </main>
+        ${renderFooter()}
+      </div>
+    `;
+
+  }
+
   function getFocusSelector(element) {
     if (!element || element === document.body || !site.contains(element)) return null;
     if (element.id) return `#${CSS.escape(element.id)}`;
@@ -1393,11 +1383,7 @@
   }
 
   function getActiveOverlay() {
-    return state.bookingOpen
-      ? document.querySelector(".modal[role='dialog']")
-      : state.mobileOpen
-        ? document.querySelector(".mobile-menu[role='dialog']")
-        : null;
+    return state.mobileOpen ? document.querySelector(".mobile-menu[role='dialog']") : null;
   }
 
   function getFocusableElements(container) {
@@ -1418,9 +1404,7 @@
       const previousFocus = previousOverlay === renderedOverlay && focusSelector
         ? document.querySelector(focusSelector)
         : null;
-      const preferredFocus = state.bookingOpen && !state.bookingSubmitted
-        ? dialog.querySelector("#booking-name")
-        : dialog.querySelector("[data-close-booking], [data-mobile-toggle]");
+      const preferredFocus = dialog.querySelector("[data-mobile-toggle]");
       const focusTarget = previousFocus && dialog.contains(previousFocus)
         ? previousFocus
         : preferredFocus || getFocusableElements(dialog)[0] || dialog;
@@ -1447,17 +1431,24 @@
 
   function closeOverlay() {
     state.mobileOpen = false;
-    state.bookingOpen = false;
-    state.bookingSubmitted = false;
     render();
   }
 
   function attachHandlers() {
-    document.querySelectorAll("[data-lang-toggle]").forEach((button) => {
-      button.addEventListener("click", () => {
-        state.lang = state.lang === "PL" ? "EN" : "PL";
-        localStorage.setItem("sandra-cbt-lang", state.lang);
-        render();
+    document.querySelectorAll("[data-language-link]").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+        if (link.hasAttribute("aria-current")) {
+          event.preventDefault();
+          return;
+        }
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        event.preventDefault();
+        const toggle = link.closest(".language-switch");
+        if (toggle.dataset.navigating) return;
+        toggle.dataset.navigating = "true";
+        toggle.dataset.language = link.dataset.languageLink;
+        window.setTimeout(() => window.location.assign(link.href), 240);
       });
     });
 
@@ -1488,27 +1479,6 @@
       });
     });
 
-    document.querySelectorAll("[data-open-booking]").forEach((button) => {
-      button.addEventListener("click", () => {
-        button.focus({ preventScroll: true });
-        state.mobileOpen = false;
-        state.bookingOpen = true;
-        state.bookingSubmitted = false;
-        render();
-      });
-    });
-
-    document.querySelectorAll("[data-close-booking]").forEach((button) => {
-      button.addEventListener("click", closeOverlay);
-    });
-
-    document.querySelectorAll("[data-modal-backdrop]").forEach((backdrop) => {
-      backdrop.addEventListener("click", (event) => {
-        if (event.target === backdrop) closeOverlay();
-      });
-    });
-
-    window.BookingFlow?.bind(site);
   }
 
   function setupRevealAnimations() {
@@ -1671,7 +1641,7 @@
     if (window.scrollY >= 100) {
       const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 24;
       if (atBottom) {
-        current = "contact";
+        current = "faq";
       } else {
         sectionIds.forEach((id) => {
           const section = document.getElementById(id);
@@ -1687,6 +1657,12 @@
       else link.removeAttribute("aria-current");
     });
     document.body.dataset.activeSection = current || "top";
+  }
+
+  // The static build uses exactly the same page renderer as the browser.
+  if (window.__STATIC_BUILD__) {
+    window.__renderPage = renderPage;
+    return;
   }
 
   document.addEventListener("keydown", (event) => {

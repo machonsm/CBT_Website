@@ -1,5 +1,5 @@
 (() => {
-  const contactEmail = "machonsm@gmail.com";
+  const contactEmail = "sandramachon.cbt@gmail.com";
   let controller = null;
 
   const copy = {

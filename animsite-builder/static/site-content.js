@@ -14,6 +14,7 @@
         about: "O mnie",
         therapy: "Jak wygląda terapia",
         pricing: "Cennik",
+        contact: "Kontakt",
         faq: "Pytania",
         bookButton: "Umów pierwszą konsultację",
       },
@@ -73,6 +74,9 @@
         name: "mgr Sandra Machoń",
         title: "O mnie",
         subtitle: "Psychoterapia oparta na metodzie i dopasowana do człowieka",
+        contactTitle: "Chcesz o coś zapytać przed umówieniem konsultacji?",
+        emailLabel: "E-mail",
+        phoneLabel: "Telefon",
         paragraphs: [
           "Cześć, nazywam się Sandra Machoń. Jestem psychoterapeutką w trakcie certyfikacji. Prowadzę psychoterapię osób dorosłych w nurcie poznawczo-behawioralnym, online, po polsku i angielsku.",
           "Jestem na trzecim roku czteroletniej Szkoły Psychoterapii Poznawczo-Behawioralnej WSB-NLU. Pracuję pod superwizją.",
@@ -354,6 +358,7 @@
         subtitle: "Nie musisz teraz podejmować decyzji o całej terapii. Pierwsza konsultacja jest okazją, żeby opowiedzieć o swojej sytuacji, zadać pytania i sprawdzić, czy chcesz pracować właśnie ze mną.",
         button: "Umów pierwszą konsultację",
         emailLabel: "Masz pytanie przed rezerwacją? Napisz do mnie.",
+        phoneLabel: "Możesz też zadzwonić:",
         emailNote: "W pierwszej wiadomości nie musisz szczegółowo opisywać swojej sytuacji.",
       },
       footer: {
@@ -373,6 +378,7 @@
         about: "About me",
         therapy: "How therapy works",
         pricing: "Fees",
+        contact: "Contact",
         faq: "Questions",
         bookButton: "Book an initial consultation",
       },
@@ -432,6 +438,9 @@
         name: "Sandra Machoń, MSc",
         title: "About me",
         subtitle: "Psychotherapy grounded in a method, shaped around you",
+        contactTitle: "Would you like to ask something before booking a consultation?",
+        emailLabel: "Email",
+        phoneLabel: "Phone",
         paragraphs: [
           "Hi, I’m Sandra Machoń. I am a psychotherapist working towards certification. I provide cognitive behavioural psychotherapy for adults online, in Polish and English.",
           "I am in the third year of the four-year programme at the WSB-NLU School of Cognitive Behavioural Psychotherapy. I work under supervision.",
@@ -711,6 +720,7 @@
         subtitle: "You don’t have to decide about a whole course of therapy now. An initial consultation is a chance to talk about your situation, ask questions and see whether you would like to work with me.",
         button: "Book an initial consultation",
         emailLabel: "Have a question before booking? Get in touch.",
+        phoneLabel: "You can also call:",
         emailNote: "You don’t need to describe your situation in detail in your first email.",
       },
       footer: {

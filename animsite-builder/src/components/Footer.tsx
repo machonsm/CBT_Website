@@ -58,10 +58,10 @@ export const Footer: React.FC<FooterProps> = ({ lang, onLanguageToggle }) => {
             <h4 className="font-bold text-sm mb-4 text-[#FDBF2E]">{t.contact}</h4>
             <div className="flex flex-col gap-2 text-xs text-white/80">
               <a
-                href="mailto:machonsm@gmail.com"
+                href="mailto:sandramachon.cbt@gmail.com"
                 className="hover:text-[#FF5938] transition-colors underline"
               >
-                machonsm@gmail.com
+                sandramachon.cbt@gmail.com
               </a>
               <p>{t.onlineNote}</p>
             </div>

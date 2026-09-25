@@ -24,9 +24,9 @@
   let paused = false;
 
   try {
-    paused = sessionStorage.getItem("cbt-motion-paused") === "true";
+    sessionStorage.removeItem("cbt-motion-paused");
   } catch {
-    // Motion controls still work when browser storage is unavailable.
+    // Browser storage is optional.
   }
 
   function motionDisabled() {

@@ -1,0 +1,56 @@
+/* Two language links with a shared sliding pill. */
+.page .language-switch {
+  --switch-ink: var(--palette-deep, #211ea3);
+  --switch-paper: var(--palette-paper, #f3f4ef);
+  position: relative;
+  isolation: isolate;
+  display: inline-grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: stretch;
+  gap: 0;
+  flex: 0 0 auto;
+  width: 7rem;
+  padding: 3px;
+  border: 2px solid var(--switch-ink);
+  border-radius: 999px;
+  background: var(--switch-paper);
+  vertical-align: middle;
+}
+.language-switch-highlight {
+  position: absolute;
+  z-index: -1;
+  inset: 3px auto 3px 3px;
+  width: calc((100% - 6px) / 2);
+  border-radius: inherit;
+  background: var(--switch-ink);
+  transform: translateX(0);
+  transition: transform 240ms cubic-bezier(.2,.8,.2,1);
+}
+.language-switch[data-language="en"] .language-switch-highlight { transform: translateX(100%); }
+.page .language-switch a {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  min-height: 36px;
+  margin: 0;
+  padding: .35rem .5rem;
+  border-radius: 999px;
+  color: var(--switch-ink);
+  font-family: inherit;
+  font-size: .8rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: .03em;
+  text-decoration: none;
+  transition: color 180ms, background-color 180ms;
+}
+.page .language-switch[data-language="pl"] a[data-language-link="pl"],
+.page .language-switch[data-language="en"] a[data-language-link="en"] { color: var(--switch-paper); }
+.page .language-switch a:not([aria-current]):hover { background: var(--palette-pink, #ffcddf); }
+.page .language-switch[data-navigating] a:hover { background: transparent; }
+.page .language-switch a:focus-visible { outline: 2px solid var(--palette-orange, #f1562c); outline-offset: 3px; }
+.page .language-switch--compact { width: 6.25rem; }
+.mobile-menu .language-switch { border-color: var(--palette-pink, #ffcddf); }
+@media (prefers-reduced-motion: reduce) {
+  .language-switch-highlight, .page .language-switch a { transition: none; }
+}

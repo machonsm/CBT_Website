@@ -1,0 +1,53 @@
+/* Cursor-origin radial fill; the button itself remains stationary. */
+.page .btn.btn-primary {
+  --radial-base: var(--palette-deep, #211ea3);
+  --radial-fill: var(--palette-pink, #ffcddf);
+  --radial-text: var(--palette-paper, #f3f4ef);
+  --radial-hover-text: var(--palette-deep, #211ea3);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--radial-base);
+  color: var(--radial-text);
+  translate: none;
+  transform: none;
+  box-shadow: none;
+  transition: color 180ms ease;
+}
+.page .btn.btn-primary::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--radial-fill);
+  pointer-events: none;
+  clip-path: circle(0px at var(--radial-x, 50%) var(--radial-y, 50%));
+  transition: clip-path 450ms cubic-bezier(.2,.7,.2,1);
+}
+.page .contact-actions .btn.btn-primary,
+.page .mobile-menu .btn.btn-primary {
+  --radial-base: var(--palette-pink, #ffcddf);
+  --radial-fill: var(--palette-paper, #f3f4ef);
+  --radial-text: var(--palette-deep, #211ea3);
+}
+.page .btn.btn-primary:focus-visible,
+.page .btn.btn-primary:active {
+  color: var(--radial-hover-text);
+}
+.page .btn.btn-primary:focus-visible::before,
+.page .btn.btn-primary:active::before {
+  clip-path: circle(var(--radial-radius, 150vmax) at var(--radial-x, 50%) var(--radial-y, 50%));
+}
+.page .btn.btn-primary:focus-visible { outline: 3px solid var(--palette-orange, #f1562c); outline-offset: 4px; }
+@media (hover: hover) and (pointer: fine) {
+  .page .btn.btn-primary:not(:disabled):not([aria-disabled="true"]):hover { color: var(--radial-hover-text); }
+  .page .btn.btn-primary:not(:disabled):not([aria-disabled="true"]):hover::before {
+    clip-path: circle(var(--radial-radius, 150vmax) at var(--radial-x, 50%) var(--radial-y, 50%));
+  }
+}
+.page .btn.btn-primary:disabled,
+.page .btn.btn-primary[aria-disabled="true"] { opacity: .5; cursor: not-allowed; }
+@media (prefers-reduced-motion: reduce) {
+  .page .btn.btn-primary, .page .btn.btn-primary::before { transition: none; }
+}
