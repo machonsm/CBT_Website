@@ -3,7 +3,7 @@
 
   const assets = {
     logo: "src/assets/images/logo.png",
-    portrait: "src/assets/images/regenerated_image_1786380909669.png",
+    portrait: "src/assets/images/sandra-machon-portrait.jpg",
     hero: "src/components/blue-shape-hero.png",
     heart: "src/assets/images/heart-arrow.png",
     help: "src/assets/images/pic1.png",
@@ -1054,7 +1054,7 @@
           <div class="about-profile-grid">
             <div class="about-portrait-column">
               <figure class="about-portrait">
-                <div class="about-portrait-frame"><img src="${assets.portrait}" alt="Sandra Machoń" loading="lazy" width="2072" height="2070"></div>
+                <div class="about-portrait-frame"><img src="${assets.portrait}" alt="Sandra Machoń" loading="lazy" decoding="async" width="1200" height="1199"></div>
                 <figcaption><span class="about-portrait-name">${escapeHtml(about.name)}</span></figcaption>
               </figure>
               <aside class="about-contact" aria-label="${escapeHtml(about.contactTitle)}">

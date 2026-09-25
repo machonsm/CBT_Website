@@ -5,6 +5,7 @@ import vm from 'node:vm';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const origin = 'https://machoncbt.pl';
+const portraitUrl = `${origin}/src/assets/images/sandra-machon-portrait.jpg`;
 const escape = value => String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 const pages = [
   { lang: 'pl', file: 'index.html', url: `${origin}/`, title: 'Psychoterapia CBT online – Sandra Machoń', description: 'Psychoterapia poznawczo-behawioralna dorosłych online, po polsku i angielsku. Sandra Machoń. Poznaj podejście, cennik i umów pierwszą konsultację.' },
@@ -27,7 +28,7 @@ for (const page of pages) {
     '@context': 'https://schema.org',
     '@graph': [
       { '@type': 'WebSite', '@id': `${origin}/#website`, url: `${origin}/`, name: 'Sandra Machoń – Terapia CBT Online', inLanguage: ['pl', 'en'] },
-      { '@type': 'Person', '@id': `${origin}/#sandra-machon`, name: 'Sandra Machoń', url: `${origin}/#about`, image: `${origin}/src/assets/images/regenerated_image_1786380909669.png`, email: 'sandramachon.cbt@gmail.com', telephone: '+48720427426', knowsLanguage: ['pl', 'en'], description: copy.about.paragraphs[0] },
+      { '@type': 'Person', '@id': `${origin}/#sandra-machon`, name: 'Sandra Machoń', url: `${origin}/#about`, image: portraitUrl, email: 'sandramachon.cbt@gmail.com', telephone: '+48720427426', knowsLanguage: ['pl', 'en'], description: copy.about.paragraphs[0] },
       { '@type': 'WebPage', '@id': `${page.url}#webpage`, url: page.url, name: page.title, description: page.description, inLanguage: page.lang, isPartOf: { '@id': `${origin}/#website` }, about: { '@id': `${origin}/#sandra-machon` }, mainEntity: { '@id': `${page.url}#service` } },
       { '@type': 'Service', '@id': `${page.url}#service`, name: page.lang === 'pl' ? 'Psychoterapia poznawczo-behawioralna online dla dorosłych' : 'Online cognitive behavioural psychotherapy for adults', serviceType: 'Cognitive behavioural psychotherapy', provider: { '@id': `${origin}/#sandra-machon` }, url: `${page.url}#therapy`, availableChannel: { '@type': 'ServiceChannel', serviceUrl: `${page.url}#contact`, servicePhone: { '@type': 'ContactPoint', telephone: '+48720427426', availableLanguage: ['Polish', 'English'] } } },
     ],
@@ -51,12 +52,12 @@ for (const page of pages) {
     <meta property="og:url" content="${page.url}" />
     <meta property="og:locale" content="${page.lang === 'pl' ? 'pl_PL' : 'en_GB'}" />
     <meta property="og:locale:alternate" content="${page.lang === 'pl' ? 'en_GB' : 'pl_PL'}" />
-    <meta property="og:image" content="${origin}/src/assets/images/regenerated_image_1786380909669.png" />
+    <meta property="og:image" content="${portraitUrl}" />
     <meta property="og:image:alt" content="Sandra Machoń" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${escape(page.title)}" />
     <meta name="twitter:description" content="${escape(page.description)}" />
-    <meta name="twitter:image" content="${origin}/src/assets/images/regenerated_image_1786380909669.png" />
+    <meta name="twitter:image" content="${portraitUrl}" />
     <script type="application/ld+json">${JSON.stringify(schema).replace(/</g, '\\u003c')}</script>
     ${assets}
     <noscript><style>
