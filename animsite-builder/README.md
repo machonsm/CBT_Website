@@ -8,6 +8,8 @@ After editing content or rendering in `static/site-content.js`, `static/app.js` 
 
 SEO configuration (titles, descriptions, canonical URLs, hreflang, social previews, Person/WebSite/WebPage/Service structured data) is in `scripts/build-seo.mjs`. The sitemap includes the two language URLs and both legal pages, not section anchors. The legal-page source text is in `privacy-policy.md` and `terms-of-cooperation.md`; rebuild after editing either file. After deployment, verify the domain in Google Search Console, submit https://machoncbt.pl/sitemap.xml and inspect the URLs. Check live indexing and Core Web Vitals there; local checks cannot confirm search ranking or production performance. Do not add unconfirmed credentials, reviews, office addresses or medical claims to structured data.
 
+GoatCounter is loaded on both language pages and both legal pages. Its endpoint is configured in `scripts/build-seo.mjs`; check the GoatCounter account settings against the published privacy policy before deployment.
+
 From this directory:
 
 ```sh

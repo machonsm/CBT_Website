@@ -175,9 +175,10 @@ html[lang="en"] .content-flow .landing-scroll .display { font-size: min(12vw, 17
 .content-flow .flow-legal-link { display: inline-block; width: fit-content; margin-top: 1rem; color: var(--flow-blue); font-size: .9rem; line-height: 1.5; text-decoration: underline; text-underline-offset: .2em; }
 .content-flow .flow-legal-link:hover { color: var(--palette-orange); }
 .content-flow .flow-first-note .flow-legal-link { color: var(--palette-deep); }
+.content-flow .flow-pricing .flow-legal-link { display: block; margin-top: .85rem; }
 .content-flow .flow-pricing .flow-legal-link,
 .content-flow .flow-pricing .flow-legal-link:visited,
-.content-flow .flow-pricing .flow-legal-link:hover { color: #fff; }
+.content-flow .flow-pricing .flow-legal-link:hover { color: var(--palette-paper); }
 
 .content-flow .about-profile-shell { padding-block: clamp(5rem, 8vw, 8rem) clamp(7rem, 10vw, 10rem); }
 .content-flow .about-portrait-column { display: grid; justify-items: center; width: 100%; }
@@ -235,18 +236,18 @@ html[lang="en"] .content-flow .landing-scroll .display { font-size: min(12vw, 17
 .content-flow .flow-steps p { max-width: 36rem; margin: 0; color: var(--flow-ink); font-size: .95rem; line-height: 1.75; }
 .content-flow .flow-independence { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 2.5rem; margin-top: 3rem; padding: clamp(1.5rem, 3vw, 2.5rem); border: 1px solid var(--palette-blue); border-radius: 1.25rem; }
 
-.content-flow .flow-pricing { padding-block: clamp(4rem, 7vw, 7rem); background: var(--palette-blue); }
+.content-flow .flow-pricing { padding-block: clamp(4rem, 7vw, 7rem); background: #006fb8; color: var(--palette-paper); }
 .content-flow .flow-pricing > .section-shell { padding-top: 0; border-top: 0; }
-.content-flow .flow-pricing :is(.section-label, .section-title, .section-lead, .flow-pricing-note, .flow-price-languages) { color: var(--palette-ink); }
+.content-flow .flow-pricing :is(.section-label, .section-title, .section-lead, .flow-pricing-note, .flow-price-languages) { color: var(--palette-paper); }
 .content-flow .flow-pricing .section-lead { margin-bottom: 1rem; }
 .content-flow .flow-pricing .btn { margin-top: 1.25rem; }
 .content-flow .flow-price-list { display: grid; max-width: 62rem; margin: 0; }
-.content-flow .flow-price-row { display: flex; align-items: baseline; justify-content: space-between; gap: 1.5rem; padding: 1.3rem 0; border-bottom: 1px solid #0809084d; color: var(--palette-ink); }
+.content-flow .flow-price-row { display: flex; align-items: baseline; justify-content: space-between; gap: 1.5rem; padding: 1.3rem 0; border-bottom: 1px solid #f3f4ef66; color: var(--palette-paper); }
 .content-flow .flow-price-row > dt { font-size: 1.1rem; font-weight: 500; }
 .content-flow .flow-price-row > dd { flex: 0 0 auto; margin: 0; }
 .content-flow .flow-price-row > dd > strong { font-family: "Instrument Serif", Georgia, serif; font-size: 2.4rem; font-weight: 400; line-height: 1.1; }
-.content-flow .flow-pricing-note { max-width: 46rem; margin: 1.4rem 0 0; color: var(--flow-ink); font-size: .9rem; line-height: 1.75; }
-.content-flow .flow-price-languages { margin: 1.4rem 0 0; color: var(--flow-ink); font-size: .95rem; line-height: 1.7; }
+.content-flow .flow-pricing-note { max-width: 46rem; margin: 1.4rem 0 0; color: var(--palette-paper); font-size: .9rem; line-height: 1.75; }
+.content-flow .flow-price-languages { margin: 1.4rem 0 0; color: var(--palette-paper); font-size: .95rem; line-height: 1.7; }
 
 /* Native details keep questions and credentials accessible without new JS. */
 .content-flow .flow-faq { background: var(--flow-soft); }
